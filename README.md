@@ -61,16 +61,21 @@ Open the `server` and `client` in separate VSCode workspaces or open the combine
 
 ### Purpose
 
-2-5 sentences describing what the system does
+The purpose of the project is to build a website which helps users to find the movies, rate them, create lists that they can share, and have discussions with other people.  The website would make the movie-exploring journey easier for users, and they can find relevant movies in the desired genre 33and explore more options/hidden gems.
 
 ### Pages
 
-* Home: 1-3 sentences describing what the page displays and what a user can do
-* Shopping cart: ...
+Page 1: Home page includes website name and logo. This page will have the most popular movies and most recent movies at the moment that the user can scroll through. As well as a hidden gem section that includes recommended movies of our choices, and a genre section.
+The user can search for their desired movie by using the searching function at the top of the page.
+
+Page 2:Second page is going to be displayed if the user clicks on one of the specified movies in the Home page. The description of the movie would be displayed including its name,genre,rating,age rating and language. The casting members would be shown below the description of the movie.Comment sections would be at the bottom of the page so the user can leave a comment about the movie. There would also be a button that the user can click in order to add the movie to their watch list.
+
+Page 3: User profile is going to display the users profile picture and account details, recent watched or viewed movies section. As well as their movies lists like “To watch” list, “Watched” list, and enabling the user to add a list of his/her choice. As well as a logout functionality. 
+
 
 ### Entity-Relationship (ER) Diagram
 
-![ER Diagram](./images/er_diagram.png)
+![ER Diagram](./images/ER_Diagram.png)
 
 ## Teaser (MS3)
 
