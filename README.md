@@ -75,7 +75,7 @@ Page 3: User profile is going to display the users profile picture and account d
 
 ### Entity-Relationship (ER) Diagram
 
-![ER Diagram](./images/ER_Diagram.png)
+![ER Diagram](./images/er_diagram.png)
 
 ## Teaser (MS3)
 
