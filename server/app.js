@@ -8,7 +8,7 @@ var history = require('connect-history-api-fallback');
 
 var watchListController = require('./controller/watch_list');
 var userController = require ('./controller/users');
-
+//var commentsController = require ('./controller/comments');
 
 // Variables
 var mongoURI = process.env.MONGODB_URI || 'mongodb+srv://MarSel:987123@cluster0.qmtnvzi.mongodb.net/MoviesJunkies?retryWrites=true&w=majority';
@@ -42,6 +42,7 @@ app.get('/api', function(req, res) {
 
 app.use(watchListController);
 app.use(userController);
+//app.use(commentsController);
 
 
 // Catch all non-error handler for api (i.e., 404 Not Found)

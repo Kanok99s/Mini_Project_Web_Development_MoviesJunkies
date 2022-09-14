@@ -11,5 +11,5 @@ var watchlistSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model('watch_list', watchlistSchema);
+module.exports = mongoose.model('watch_lists', watchlistSchema);
 
