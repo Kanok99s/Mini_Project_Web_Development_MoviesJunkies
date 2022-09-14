@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Users = require('../models/users');
+var Users = require('../model/users');
 
 //creating new users
 router.post('/api/users', function (req, res, next) {

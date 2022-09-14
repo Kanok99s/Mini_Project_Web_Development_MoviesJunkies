@@ -5,8 +5,13 @@ var path = require('path');
 var cors = require('cors');
 var history = require('connect-history-api-fallback');
 
+
+var watchListController = require('./controller/watch_list');
+var userController = require ('./controller/users');
+
+
 // Variables
-var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/animalDevelopmentDB';
+var mongoURI = process.env.MONGODB_URI || 'mongodb+srv://MarSel:987123@cluster0.qmtnvzi.mongodb.net/MoviesJunkies?retryWrites=true&w=majority';
 var port = process.env.PORT || 3000;
 
 // Connect to MongoDB
@@ -34,6 +39,10 @@ app.use(cors());
 app.get('/api', function(req, res) {
     res.json({'message': 'Welcome to your DIT342 backend ExpressJS project!'});
 });
+
+app.use(watchListController);
+app.use(userController);
+
 
 // Catch all non-error handler for api (i.e., 404 Not Found)
 app.use('/api/*', function (req, res) {
