@@ -7,6 +7,7 @@ var history = require('connect-history-api-fallback');
 
 
 var watchListController = require('./controller/watch_list');
+//var commentsController = require ('./controller/comments');
 var userController = require('./controller/users');
 var moviesController = require('./controller/movies');
 
@@ -43,7 +44,9 @@ app.get('/api', function (req, res) {
 
 app.use(watchListController);
 app.use(userController);
+//app.use(commentsController);
 app.use(moviesController);
+
 
 
 // Catch all non-error handler for api (i.e., 404 Not Found)

@@ -5,7 +5,7 @@ var watchList = require('../model/watch_list')
 
 
 //create list
-router.post('/api/watch_list', function (req, res, next) {
+router.post('/api/watch_lists', function (req, res, next) {
     var list = new watchList(req.body);
     list.save(function (err, list) {
         if (err) { return next(err); }
@@ -16,7 +16,7 @@ router.post('/api/watch_list', function (req, res, next) {
 
 
 //delete list by id
-router.delete('/api/watch_list/:id', function(req, res, next) {
+router.delete('/api/watch_lists/:id', function(req, res, next) {
     var id = req.params.id;
     watchList.findOneAndDelete({_id: id}, function(err, list) {
         if (err) { return next(err); }
@@ -28,17 +28,17 @@ router.delete('/api/watch_list/:id', function(req, res, next) {
 });
 
 
-router.get('/api/watch_list', function (req, res, next) {
-    watchList.find(function (err, user) {
+router.get('/api/watch_lists', function (req, res, next) {
+    watchList.find(function (err, list) {
         if (err) { return next(err); }
-        res.json({ "users": user });
+        res.json({ "watch_lists": list });
     });
 });
 
 
 
 //get list by id
-router.get('/api/watch_list/:id', function(req, res, next) {
+router.get('/api/watch_lists/:id', function(req, res, next) {
     var id = req.params.id;
     watchList.findById(id, function(err, list) {
 
@@ -53,7 +53,7 @@ router.get('/api/watch_list/:id', function(req, res, next) {
 
 
 //update a list attribute
-router.patch("/api/watch_list/:id", async (req, res) => {
+router.patch("/api/watch_lists/:id", async (req, res) => {
 try {
 
     var _id = req.params.id;
@@ -71,7 +71,7 @@ res.status(404).send(err);
 
 
 //delete request
-router.delete('/api/watch_list/:id', (req, res) => {
+router.delete('/api/watch_lists/:id', (req, res) => {
 
     const { id } = req.params;
     const deleteList = watchList.find(list => list.id == id)
@@ -86,7 +86,7 @@ router.delete('/api/watch_list/:id', (req, res) => {
 
 
 //update request
-router.put('/watch_list/:id', function (req, res) {
+router.put('/watch_lists/:id', function (req, res) {
 watchList.update(
 {
     title:  req.params.title},
