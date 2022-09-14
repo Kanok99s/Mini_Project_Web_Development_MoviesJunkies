@@ -7,15 +7,16 @@ var history = require('connect-history-api-fallback');
 
 
 var watchListController = require('./controller/watch_list');
-var userController = require ('./controller/users');
+var userController = require('./controller/users');
+var moviesController = require('./controller/movies');
 
 
 // Variables
-var mongoURI = process.env.MONGODB_URI || 'mongodb+srv://MarSel:987123@cluster0.qmtnvzi.mongodb.net/MoviesJunkies?retryWrites=true&w=majority';
+var mongoURI = process.env.MONGODB_URI || 'mongodb+srv://kanok99s:1234@cluster0.qmtnvzi.mongodb.net/MoviesJunkies?retryWrites=true&w=majority';
 var port = process.env.PORT || 3000;
 
 // Connect to MongoDB
-mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true }, function(err) {
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
     if (err) {
         console.error(`Failed to connect to MongoDB with URI: ${mongoURI}`);
         console.error(err.stack);
@@ -36,12 +37,13 @@ app.options('*', cors());
 app.use(cors());
 
 // Import routes
-app.get('/api', function(req, res) {
-    res.json({'message': 'Welcome to your DIT342 backend ExpressJS project!'});
+app.get('/api', function (req, res) {
+    res.json({ 'message': 'Welcome to your DIT342 backend ExpressJS project!' });
 });
 
 app.use(watchListController);
 app.use(userController);
+app.use(moviesController);
 
 
 // Catch all non-error handler for api (i.e., 404 Not Found)
@@ -60,7 +62,7 @@ app.use(express.static(client));
 // Error handler (i.e., when exception is thrown) must be registered last
 var env = app.get('env');
 // eslint-disable-next-line no-unused-vars
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
     console.error(err.stack);
     var err_res = {
         'message': err.message,
@@ -74,7 +76,9 @@ app.use(function(err, req, res, next) {
     res.json(err_res);
 });
 
-app.listen(port, function(err) {
+//this just random haha
+
+app.listen(port, function (err) {
     if (err) throw err;
     console.log(`Express server listening on port ${port}, in ${env} mode`);
     console.log(`Backend: http://localhost:${port}/api/`);
