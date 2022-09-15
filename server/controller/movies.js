@@ -78,4 +78,29 @@ router.put('/api/movies/_:id', function (req, res) {
       )
 });
 
+
+//patch updates
+router.patch('/api/movies/:_id', function (req, res, next) {
+      var id = req.params._id;
+      Movies.findById(id, function (err, comments) {
+            if (err) {
+                  return next(err);
+            }
+            if (movies == null) {
+                  return res.status(404).json({ "message": "movie not found" });
+            }
+            movies.name = (req.body.name || movies.name);
+            movies.genre = (req.body.genre || movies.genre);
+            movies.age_rating = (req.body.age_rating || movies.age_rating);
+            movies.review_rating = (req.body.review_rating || movies.review_rating);
+            movies.language = (req.body.language || movies.language);
+            movies.description = (req.body.description || movies.description);
+
+
+            comments.save();
+            res.json(comments);
+
+      });
+});
+
 module.exports = router;
