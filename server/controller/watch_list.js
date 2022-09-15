@@ -70,18 +70,18 @@ res.status(404).send(err);
 })
 
 
-//delete request
-router.delete('/api/watch_lists/:id', (req, res) => {
 
-    const { id } = req.params;
-    const deleteList = watchList.find(list => list.id == id)
-  if(deleteList){
-    watchList = watchList.filter(list => list.id !== id);
-  } else {
-    res.status(404).json({ massage: "List you are looking for doesn't exist" })
-  }
-      
+//delete all lists
+router.delete('/api/watch_lists/', function (req, res, next) {
+   watchList.remove({}, function (err, list) {
+        if (err) { return next(err); }
+        if (list == null) {
+            return res.status(404).json({ "message": "no lists found" });
+        }
+        res.json(list);
+    });
 });
+
 
 
 

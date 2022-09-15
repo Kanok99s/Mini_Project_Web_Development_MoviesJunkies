@@ -13,7 +13,7 @@ router.post('/api/movies', function (req, res, next) {
 
 
 //Get all movies
-router.get('/api/moives', function (req, res, next) {
+router.get('/api/movies', function (req, res, next) {
       Movies.find(function (err, movie) {
             if (err) { return next(err); }
             res.json({ "movies": movie });

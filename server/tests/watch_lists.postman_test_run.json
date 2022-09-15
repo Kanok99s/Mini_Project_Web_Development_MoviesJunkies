@@ -1,0 +1,172 @@
+{
+	"id": "03cdced8-ce48-40f0-88ce-6d3bf8eaddfa",
+	"name": "watch_lists",
+	"timestamp": "2022-09-15T14:46:03.117Z",
+	"collection_id": "23100574-b738c85c-8c01-4c1e-869b-f6b7e8d215eb",
+	"folder_id": 0,
+	"environment_id": "23100688-ca7f304b-9998-4ab9-b04a-312c5833af35",
+	"totalPass": 0,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "87440eb6-af2c-4494-a6fe-db419340d5b7",
+			"name": "GET /api/watch_lists",
+			"url": "http://localhost:3000/api/watch_lists",
+			"time": 45,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				45
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "dc6d351d-82b8-4492-978f-e90f9df5c24e",
+			"name": "POST /api/watch_lists",
+			"url": "http://localhost:3000/api/watch_lists",
+			"time": 29,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				29
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "788c31f3-44e9-4566-b32f-20c25d135fb5",
+			"name": "PUT /api/watch_list",
+			"url": "http://localhost:3000/api/watch_lists",
+			"time": 3,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				3
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "966ac32c-7d0c-4d49-82ca-1f35b98357c4",
+			"name": "GET /api/watch_list/:id",
+			"url": "http://localhost:3000/api/watch_lists/6321edcb35abbd5993bdebbd",
+			"time": 25,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				25
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "61eb181a-be81-478c-86f2-d2fe5c13793a",
+			"name": "PATCH /api/watch_list/:id",
+			"url": "http://localhost:3000/api/watch_lists/6321edcb35abbd5993bdebbd",
+			"time": 25,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				25
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "615f428a-d438-4c4e-bf09-c9522b0c6517",
+			"name": "DELETE /api/watch_list/:id",
+			"url": "http://localhost:3000/api/watch_lists/6321edcb35abbd5993bdebbd",
+			"time": 31,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				31
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "babb05f9-5336-446a-8ab3-5d0672d42863",
+			"name": "DELETE /api/watch_list",
+			"url": "http://localhost:3000/api/watch_lists",
+			"time": 28,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				28
+			],
+			"allTests": [
+				{}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 186,
+	"collection": {
+		"requests": [
+			{
+				"id": "87440eb6-af2c-4494-a6fe-db419340d5b7",
+				"method": "GET"
+			},
+			{
+				"id": "dc6d351d-82b8-4492-978f-e90f9df5c24e",
+				"method": "POST"
+			},
+			{
+				"id": "788c31f3-44e9-4566-b32f-20c25d135fb5",
+				"method": "PUT"
+			},
+			{
+				"id": "966ac32c-7d0c-4d49-82ca-1f35b98357c4",
+				"method": "GET"
+			},
+			{
+				"id": "61eb181a-be81-478c-86f2-d2fe5c13793a",
+				"method": "PATCH"
+			},
+			{
+				"id": "615f428a-d438-4c4e-bf09-c9522b0c6517",
+				"method": "DELETE"
+			},
+			{
+				"id": "babb05f9-5336-446a-8ab3-5d0672d42863",
+				"method": "DELETE"
+			}
+		]
+	}
+}

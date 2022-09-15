@@ -8,7 +8,7 @@ router.post('/api/comments', function (req, res, next) {
     comments.save(function (err, comments) {
         if (err) { return next(err); }
         res.status(201).json(comments);
-    })
+    });
 });
 //Get all comments 
 router.get('/api/comments', function (req, res, next) {
@@ -52,8 +52,8 @@ router.patch('/api/comments/:_id',function(req,res,next){
             return res.status(404).json({"message":"comment not found"});
         }
         comments.userName = (req.body.userName || comments.userName);
-        comments.content = (req.body.content  || comments.content);
-        comments.dislike_number = (req.body.dislike_number ||  comments.dislike_number);
+        comments.content = (req.body.content || comments.content);
+        comments.dislike_number = (req.body.dislike_number || comments.dislike_number);
         comments.like_number = (req.body.like_number || comments.like_number);
 
         comments.save();
@@ -61,3 +61,5 @@ router.patch('/api/comments/:_id',function(req,res,next){
 
     });
 });
+
+module.exports = router;

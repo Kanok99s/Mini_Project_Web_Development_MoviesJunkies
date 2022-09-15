@@ -7,13 +7,12 @@ var history = require('connect-history-api-fallback');
 
 
 var watchListController = require('./controller/watch_list');
-//var commentsController = require ('./controller/comments');
 var userController = require('./controller/users');
 var moviesController = require('./controller/movies');
-
+var commentsController = require('./controller/comments');
 
 // Variables
-var mongoURI = process.env.MONGODB_URI || 'mongodb+srv://kanok99s:1234@cluster0.qmtnvzi.mongodb.net/MoviesJunkies?retryWrites=true&w=majority';
+var mongoURI = process.env.MONGODB_URI || 'mongodb+srv://MarSel:987123@cluster0.qmtnvzi.mongodb.net/MoviesJunkies?retryWrites=true&w=majority';
 var port = process.env.PORT || 3000;
 
 // Connect to MongoDB
@@ -44,10 +43,8 @@ app.get('/api', function (req, res) {
 
 app.use(watchListController);
 app.use(userController);
-//app.use(commentsController);
 app.use(moviesController);
-
-
+app.use(commentsController);
 
 // Catch all non-error handler for api (i.e., 404 Not Found)
 app.use('/api/*', function (req, res) {
