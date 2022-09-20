@@ -41,7 +41,7 @@ router.delete('/api/movies/:_id', function (req, res, next) {
             if (movie == null) {
                   return res.status(404).json({ "message": "movie not found" });
             }
-            res.json(movies);
+            res.json(movie);
       });
 });
 
@@ -50,7 +50,7 @@ router.delete('/api/movies/:_id', function (req, res, next) {
 router.delete('/api/movies/', function (req, res, next) {
       Movies.remove({}, function (err, movie) {
             if (err) { return next(err); }
-            if (user == null) {
+            if (movie == null) {
                   return res.status(404).json({ "message": "movie not found" });
             }
             res.json(movie);
