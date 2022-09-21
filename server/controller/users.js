@@ -36,7 +36,7 @@ router.delete('/api/users/:_id', function (req, res, next) {
         if (user == null) {
             return res.status(404).json({ "message": "user not found" });
         }
-        res.json(users);
+        res.json(user);
     });
 });
 //Delete all

@@ -40,6 +40,18 @@ router.delete('/api/comments',function(req,res,next){
     });
 
 });
+
+router.delete('/api/comments/:_id', function(req, res, next) {
+    var id = req.params._id;
+   Comments.findOneAndDelete({_id: id}, function(err, comments) {
+        if (err) { return next(err); }
+        if (comments === null) {
+            return res.status(404).json({'message': 'comment is not found'});
+        }
+        res.json(comments);
+    });
+});
+
 //using patch function
 
 router.patch('/api/comments/:_id',function(req,res,next){
