@@ -16,6 +16,8 @@ router.post('/api/movies', function (req, res, next) {
 router.get('/api/movies', function (req, res, next) {
       Movies.find(function (err, movie) {
             if (err) { return next(err); }
+
+            
             res.json({ "movies": movie });
       });
 });
@@ -77,6 +79,23 @@ router.put('/api/movies/_:id', function (req, res) {
             }
       )
 });
+
+
+//filter by genre
+router.get("/api/movies?genre=:genre", function (req, res, next) {
+      console.log("...ing");
+      Movies.find({ genre: { $all: [req.params.genre] } }).exec(function (
+      err,
+      movies
+      ) {
+      if (err) {
+      return res.status(500).send(err);
+      }
+      console.log("genre found!");
+      return res.status(200).json(movies);
+      });
+});
+
 
 
 //patch updates
