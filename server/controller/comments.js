@@ -52,6 +52,8 @@ router.delete('/api/comments/:_id', function(req, res, next) {
     });
 });
 
+
+
 //using patch function
 
 router.patch('/api/comments/:_id',function(req,res,next){
@@ -73,5 +75,8 @@ router.patch('/api/comments/:_id',function(req,res,next){
 
     });
 });
+
+
+
 
 module.exports = router;
