@@ -15,7 +15,7 @@ movies : [
     },
   ],
  
-    creator: { 
+    user: { 
      type: Schema.Types.ObjectId, ref: "users"
     }
 });

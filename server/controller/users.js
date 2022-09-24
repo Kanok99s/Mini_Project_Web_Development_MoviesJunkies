@@ -3,6 +3,7 @@ const users = require('../model/users');
 var router = express.Router();
 var Users = require('../model/users');
 var Comment = require("../model/comments");
+var WatchLists = require('../model/watch_list');
 
 //creating new users
 router.post('/api/users', function (req, res, next) {
@@ -90,10 +91,7 @@ router.put("/api/users/:id", (req, res) => {
       res.status(201).json(user);
     });
   });
-  module.exports = router;
-
-
-
+ 
 
 //post comment by specific user
 router.post("/api/users/:id/comments", function (req, res, next) {
@@ -132,6 +130,63 @@ router.get("/api/users/:id/comments", function (req, res, next) {
     });
 });
 
+//create list by a user
+router.post('/api/users/:_id/watch_lists', function(req, res, next) {
+    Users.findById(req.params._id, function (err, user) {
+        if (err) {
+            return res.status(500);
+        }
+        if (user == null) {
+            return res.status(404).json({ message: "user is not found!" });
+        }
+        var list = new WatchLists(req.body);
+        list.save(function (err) {
+            if (err) {
+            return res.status(500);
+            }
+        });
+        user.watch_lists.push(list);
+        user.save();
+        return res.status(201).json(user);
+        });
+    });
+    
 
-module.exports = router;
+//get a certain user's watchlists
+router.get('/api/users/:_id/watch_lists', function(req, res, next) {
+    WatchLists.find(function (err, list) {
+        if (err) { return next(err); }
+        res.json({ "watch_lists": list });
+    });
+});
 
+   
+
+//get a user's certain watch_list
+router.get('/api/users/:user_id/watch_lists/:list_id', function(req, res, next) {
+    var id = req.params.list_id;
+   WatchLists.findById(id, function (err, list) {
+        if (err) { return next(err); }
+        if (list == null) {
+            return res.status(404).json({ "message": "List not found" });
+
+        } res.json({ "watch_lists": list });
+    });
+
+});
+
+
+    //delete list by id
+router.delete('/api/users/:user_id/watch_lists/:list_id', function(req, res, next) {
+    var id = req.params.list_id;
+    WatchLists.findOneAndDelete(id, function (err, list) {
+        if (err) { return next(err); }
+        if (list == null) {
+            return res.status(404).json({ "message": "list not found" });
+
+        } res.json({ "watch_lists": list });
+    });
+
+});
+
+  module.exports = router;
