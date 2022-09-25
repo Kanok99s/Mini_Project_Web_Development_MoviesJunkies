@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Movies = require('../model/movies');
+const { route } = require('./users');
 
 //creating new movies
 router.post('/api/movies', function (req, res, next) {
@@ -23,9 +24,10 @@ router.get('/api/movies', function (req, res, next) {
 });
 
 
+
 //Get movie by ID
-router.get('/api/movies/:_id', function (req, res, next) {
-      var id = req.params._id;
+router.get('/api/movies/:id', function (req, res, next) {
+      var id = req.params.id;
       Movies.findById(id, function (err, movie) {
             if (err) { return next(err); }
             if (movie == null) {
@@ -35,8 +37,24 @@ router.get('/api/movies/:_id', function (req, res, next) {
       });
 });
 
+
+//Get all movies of a certain genre
+router.get('/api/movies/genres/:genre', function(req, res, next){
+      var Genre = req.params.genre;
+      Movies.find({genre: Genre.toString() }, function(err, movie) {
+            if(err) { return next(err); }
+            if(movie === null) {
+            return res.status(404).json({'Message': 'movie not found'});
+            }
+            res.json(movie);
+      });
+});
+
+
+
+
 //Delete movie by ID
-router.delete('/api/movies/:_id', function (req, res, next) {
+router.delete('/api/movies/:id', function (req, res, next) {
       var id = req.params._id;
       Movies.findOneAndDelete({ _id: id }, function (err, movie) {
             if (err) { return next(err); }
@@ -61,7 +79,7 @@ router.delete('/api/movies/', function (req, res, next) {
 
 
 //update movie contents
-router.put('/api/movies/_:id', function (req, res) {
+router.put('/api/movies/:id', function (req, res) {
       Movies.update(
             {
                   name: req.params.name
@@ -81,25 +99,10 @@ router.put('/api/movies/_:id', function (req, res) {
 });
 
 
-//filter by genre
-router.get("/api/movies?genre=:genre", function (req, res, next) {
-      console.log("...ing");
-      Movies.find({ genre: { $all: [req.params.genre] } }).exec(function (
-      err,
-      movies
-      ) {
-      if (err) {
-      return res.status(500).send(err);
-      }
-      console.log("genre found!");
-      return res.status(200).json(movies);
-      });
-});
-
 
 
 //patch updates
-router.patch('/api/movies/:_id', function (req, res, next) {
+router.patch('/api/movies/:id', function (req, res, next) {
       var id = req.params._id;
       Movies.findById(id, function (err, comments) {
             if (err) {
@@ -121,5 +124,8 @@ router.patch('/api/movies/:_id', function (req, res, next) {
 
       });
 });
+
+
+
 
 module.exports = router;
