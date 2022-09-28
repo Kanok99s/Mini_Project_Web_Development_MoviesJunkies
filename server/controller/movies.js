@@ -54,7 +54,7 @@ router.get('/api/movies/genres/:genre', function(req, res, next){
 
 
 //Delete movie by ID
-router.delete('/api/movies/:id', function (req, res, next) {
+router.delete('/api/movies/:_id', function (req, res, next) {
       var id = req.params._id;
       Movies.findOneAndDelete({ _id: id }, function (err, movie) {
             if (err) { return next(err); }
@@ -102,7 +102,7 @@ router.put('/api/movies/:id', function (req, res) {
 
 
 //patch updates
-router.patch('/api/movies/:id', function (req, res, next) {
+router.patch('/api/movies/_:id', function (req, res, next) {
       var id = req.params._id;
       Movies.findById(id, function (err, comments) {
             if (err) {

@@ -5,15 +5,20 @@
       <p>Message from the server:<br/>
       {{ message }}</p>
     </b-jumbotron>
+    <my-footer></my-footer>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import { Api } from '@/Api'
+import MyFooter from '@/components/MyFooter.vue'
 
 export default {
   name: 'home',
+  components: {
+    MyFooter
+  },
   data() {
     return {
       message: 'none'
