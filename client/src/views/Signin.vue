@@ -44,31 +44,31 @@
 // @ is an alias to /src
 import { Api } from '@/Api'
 export default {
-    data() {
-        return {
-            userName: '',
-            email: '',
-            password: '',
-            signUp: false
-        }
-    },
-    methods: {
-        submit() {
-            Api.post('/users', {
-                userName: this.userName,
-                email: this.email,
-                password: this.password
-            })
-                .then((response) => {
-                    this.users = response.data
-                    console.log(response.data)
-                })
-                .catch((error) => {
-                    this.message = error.message
-                    console.log(error)
-                })
-        }
+  data() {
+    return {
+      userName: '',
+      email: '',
+      password: '',
+      signUp: false
     }
+  },
+  methods: {
+    submit() {
+      Api.post('/users', {
+        userName: this.userName,
+        email: this.email,
+        password: this.password
+      })
+        .then((response) => {
+          this.users = response.data
+          console.log(response.data)
+        })
+        .catch((error) => {
+          this.message = error.message
+          console.log(error)
+        })
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
