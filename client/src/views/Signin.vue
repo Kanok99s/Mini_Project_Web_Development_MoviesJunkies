@@ -15,9 +15,9 @@
                         <button class="invert" id="signUp" @click="signUp = !signUp">Sign up</button>
 
                     </div>
-                    <div class="sign-up">
+                    <!-- <div class="sign-up">
                         <button v-on:id="sign_Up" @click="submit()">sign up</button>
-                    </div>
+                    </div> -->
                 </div>
 
             </div>
@@ -27,7 +27,7 @@
                 <input type="text" placeholder="Name"/>
                 <input type="email" placeholder="Email"/>
                 <input type="password" placeholder="Password"/>
-                <button>Sign Up</button>
+                <button v-on:id="sign_Up" @click="submit()">Sign Up</button>
             </form>
             <form class="sign-in" action="#">
                 <h2>Sign In</h2>
