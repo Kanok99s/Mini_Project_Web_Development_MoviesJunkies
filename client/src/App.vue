@@ -1,24 +1,23 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/Signin">  Signin</router-link> |
-      <router-link to="/search">  Search</router-link> |
-      <router-link to="/movie">  Movie</router-link>
-    </div>
-    <!-- Render the content of the current page view -->
-    <router-view/>
+  <Navbar/>
+    <router-view></router-view>
+
   </div>
+
 </template>
 <script>
 import { Signin } from '@/components/Signin.vue'
+import Navbar from './components/Navbar.vue'
 
 export default {
   components: {
     // eslint-disable-next-line vue/no-unused-components
-    signin: Signin
+    signin: Signin,
+    Navbar
   }
 }
+
 </script>
 
 <style>
@@ -28,5 +27,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #321e23;
+
 }
+
 </style>

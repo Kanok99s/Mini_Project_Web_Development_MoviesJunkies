@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Signin from './views/Signin.vue'
+import Watchlists from './views/Watch_lists'
 import Search from './views/Search.vue'
 import Movie from './views/Movie.vue'
 
@@ -12,7 +13,7 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
+      path: '/home',
       name: 'home',
       component: Home
     },
@@ -21,6 +22,11 @@ export default new Router({
       name: 'signin',
       component: Signin
 
+    },
+    {
+      path: '/watch_lists',
+      name: 'Watch_lists',
+      component: Watchlists
     },
     {
       path: '/search',

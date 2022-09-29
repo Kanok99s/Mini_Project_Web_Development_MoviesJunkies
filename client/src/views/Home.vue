@@ -1,23 +1,24 @@
 <template>
   <div>
-    <b-jumbotron header="DIT342 Frontend" lead="Welcome to your DIT342 Frontend Vue.js App">
-      <b-button class="btn_message" variant="primary" v-on:click="getMessage()" >Get Message from Server</b-button>
-      <p>Message from the server:<br/>
-      {{ message }}</p>
-    </b-jumbotron>
-    <my-footer></my-footer>
+    <MovieItem :key="movie.id" :type="movie.genre" v-for="movie in movies"/>
+      <b-button class="btn_movie" v-on:click="getMovie()">Get movie</b-button>
+
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import { Api } from '@/Api'
-import MyFooter from '@/components/MyFooter.vue'
+import MovieItem from '../components/MovieItem.vue'
 
 export default {
   name: 'home',
-  components: {
-    MyFooter
+  components: { MovieItem },
+  computed: {
+    movies() {
+      return [
+      ]
+    }
   },
   data() {
     return {
@@ -25,21 +26,23 @@ export default {
     }
   },
   methods: {
-    getMessage() {
-      Api.get('/')
+    geMovie() {
+      Api.get('/movies' + this.$route.params.id)
         .then(response => {
-          this.message = response.data.message
+          this.movie = response.data
         })
         .catch(error => {
-          this.message = error
+          this.list = error
         })
     }
   }
 }
+
 </script>
 
 <style>
-.btn_message {
-  margin-bottom: 1em;
+.btn_movie {
+  background-color: #c45c4c;;
+
 }
 </style>
