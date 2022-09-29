@@ -2,15 +2,47 @@ var express = require('express');
 var router = express.Router();
 var Movies = require('../model/movies');
 const { route } = require('./users');
+const multer = require('multer');
 
-//creating new movies
+
+const storage = multer.diskStorage({
+      destination: function(req, file, cb) {
+        cb(null, './uploads/');
+      },
+      filename: function(req, file, cb) {
+        cb(null, new Date().toISOString() + file.originalname);
+      }
+    });
+    const upload = multer({
+      storage: storage,
+    });
+   
+/* //creating new movies
 router.post('/api/movies', function (req, res, next) {
       var movie = new Movies(req.body);
       movie.save(function (err, movie) {
             if (err) { return next(err); }
             res.status(201).json(movie);
       })
-});
+}); */
+
+router.post("/api/movies", upload.single('img'), (req, res, next) => {
+      const movie = new Movies({
+        _id: new mongoose.Types.ObjectId(),
+        name: req.body.name,
+        img: req.file.path,
+        genre: req.body.genre,
+        age_rating: req.body.age_rating,
+       review_rating: req.body.review_rating,
+       language: req.body.language,
+       description: req.body.description
+
+      });
+      movie.save().then(result => {
+          console.log(result);
+          res.status(201).json(movie)
+          });
+        })
 
 
 //Get all movies
