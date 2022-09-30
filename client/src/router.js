@@ -12,6 +12,7 @@ export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
+
     {
       path: '/home',
       name: 'home',
@@ -24,7 +25,7 @@ export default new Router({
 
     },
     {
-      path: '/watch_lists',
+      path: '/watch_lists/:id',
       name: 'Watch_lists',
       component: Watchlists
     },

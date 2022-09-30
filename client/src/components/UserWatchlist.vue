@@ -63,20 +63,19 @@ export default {
           console.error(error)
         })
     },
-    createList(userid) {
-      Api.post('/users/' + this.$route.params.userid + '/watch_lists').then(response => {
-
+    createList() {
+      Api.post('/watch_lists').then((response) => {
+        this.watch_lists = response.data
+        console.log(response.data)
       })
+        .catch((error) => {
+          console.error(error)
+        })
     }
   }
 }
-
 </script>
 
 <style scoped>
-
-p{
-background-color: blueviolet;
-}
 
 </style>
