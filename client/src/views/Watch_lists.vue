@@ -37,6 +37,15 @@ export default {
         this.watch_lists = error
         console.log(error)
       })
+    },
+    getListById() {
+      Api.get('/watch_lists/' + this.$route.params.id)
+        .then(response => {
+          this.watch_lists = response.data
+        })
+        .catch(error => {
+          this.watch_lists = error
+        })
     }
   }
 }
