@@ -24,9 +24,9 @@
             <form class="sign-up" action="#">
                 <h2>Create login</h2>
                 <div>Use your email for registration</div>
-                <input type="text" placeholder="Name"/>
-                <input type="email" placeholder="Email"/>
-                <input type="password" placeholder="Password"/>
+                <input type="text" v-model="userName" placeholder="Name"/>
+                <input type="email" v-model="email" placeholder="Email"/>
+                <input type="password" v-model="password" placeholder="Password"/>
                 <button v-on:id="sign_Up" @click="submit()">Sign Up</button>
             </form>
             <form class="sign-in" action="#">
