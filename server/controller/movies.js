@@ -28,7 +28,6 @@ router.post('/api/movies', function (req, res, next) {
 
 router.post("/api/movies", upload.single('img'), (req, res, next) => {
       const movie = new Movies({
-        _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
         img: req.file.path,
         genre: req.body.genre,

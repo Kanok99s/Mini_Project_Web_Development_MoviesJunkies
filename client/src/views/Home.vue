@@ -1,9 +1,12 @@
 <template>
 
     <div class="input-group-append">
-    <input type="text" ref="get_id" class="form-control ml-2" placeholder="enter movieId" />
+
+    <input type="text" ref="get_id" class="form-control ml-2"  v-model="_id" placeholder="enter movieId" />
             <b-button class="bttn" v-on:click="getMovie()">Get movie</b-button>
             <tr v-for="movie in movies" :key="movie._id">
+              <td> {{ movie.name }}</td>
+              <td> {{ movie.genre }}</td>
               </tr>
         </div>
 
@@ -30,7 +33,7 @@ export default {
           this.movie = response.data
         })
         .catch(error => {
-          this.movie = error
+          console.log(error)
         })
     }
   }

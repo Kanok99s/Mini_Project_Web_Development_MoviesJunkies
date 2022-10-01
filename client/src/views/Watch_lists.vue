@@ -1,8 +1,23 @@
 <template>
-<div>
+<div class="main-container">
 <Lists>
+<Movies>
+
+  <div>
+    <div
+      v-for="list in watch_lists" :key="list._id" >
+      <div
+        v-for="movie in watch_lists.movies" :key="movie._id">
+        <router-link :to="{ name: 'movie', params: { id: movie._id } }"
+            >{{ movie.name }}
+          </router-link>
+      </div>
+    </div>
+  </div>
+
+</Movies>
    </Lists>
-   <Movies />
+
 </div>
 </template>
 
@@ -20,7 +35,7 @@ export default {
   },
   data() {
     return {
-      message: 'none'
+      selectedIds: []
     }
   },
   methods: {
@@ -32,7 +47,7 @@ export default {
     },
     getWatchLists() {
       Api.get('/watch_lists').then(Response => {
-        this.watch_lists = Response.data.watch_lists
+        this.list = Response.data
       }).catch(error => {
         this.watch_lists = error
         console.log(error)
@@ -41,11 +56,22 @@ export default {
     getListById() {
       Api.get('/watch_lists/' + this.$route.params.id)
         .then(response => {
-          this.watch_lists = response.data
+          this.list = response.data
         })
         .catch(error => {
-          this.watch_lists = error
+          this.list = {}
+          console.log(error)
         })
+    },
+    updateList() {
+      const updatedList = {
+        title: this.title,
+        movies: this.movies
+      }
+      Api.patch('/watch_lists' + this.$route.params.id, updatedList).then(response => {
+        this.$router.push('/watch_lists')
+        console.log(response)
+      })
     }
   }
 }
@@ -56,4 +82,5 @@ export default {
 h1{
     color: black;
 }
+
 </style>
