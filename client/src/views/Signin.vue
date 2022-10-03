@@ -32,10 +32,10 @@
             <form class="sign-in" action="#">
                 <h2>Sign In</h2>
                 <div>Use your account</div>
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Password" />
+                <input type="email" v-model="email" placeholder="Email" />
+                <input type="password" v-model="password" placeholder="Password" />
                 <a href="#">Forgot your password?</a>
-                <button>Sign In</button>
+                <button v-on:id="Sign_In" @click="doLogin()"> Sign In</button>
             </form>
         </div>
     </article>
@@ -43,6 +43,7 @@
 <script>
 // @ is an alias to /src
 import { Api } from '@/Api'
+// import axios from 'axios'
 export default {
   data() {
     return {
@@ -52,6 +53,12 @@ export default {
       signUp: false
     }
   },
+  mounted() {
+    if (!localStorage.userID) {
+      localStorage.userID = ''
+    }
+  },
+
   methods: {
     submit() {
       Api.post('/users', {
@@ -67,6 +74,29 @@ export default {
           this.message = error.message
           console.log(error)
         })
+    },
+    doLogin() {
+      if (this.email === '' || this.password === '') {
+        this.emptyFields = true
+        console.log('nazli')
+      } else {
+        Api.get('/auth/?email=' + this.email + '&password=' + this.password)
+        console.log('nazli2')
+          .then(response => {
+            if (typeof response.data.error !== 'undefined') {
+              alert(response.data.error)
+              this.user = null
+              console.log('nazli3')
+            } else {
+              this.user = response.data
+              console.log('AND THEN')
+              localStorage.userName = this.user.name
+              localStorage.userID = this.user._id
+              document.location.href = '/home'
+              console.log('nazli4')
+            }
+          })
+      }
     }
   }
 }

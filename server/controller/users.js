@@ -20,6 +20,7 @@ router.get('/api/users', function (req, res, next) {
         res.json({ "users": user });
     });
 });
+
 //Get all comments of the specific user 
 // router.get('/api/users/:_id/comments', function (req, res, next) {
 //     Comments.find(function (err, comments) {
@@ -37,6 +38,20 @@ router.get('/api/users/:_id', function (req, res, next) {
             return res.status(404).json({ "message": "user not found" });
         }
         res.json(user);
+    });
+});
+router.get('/api/auth/', function(req, res, next) {
+    var password = req.query.password;    
+    var emailAddress = req.query.email;
+    Users.findOne({ email: emailAddress }).exec(function(err, user){
+        if (err) { return next(err); }
+        if (user === null) {
+            return res.status(200).json({'error': 'User not found'});
+        }
+        if(user.password !== password) {
+            return res.status(200).json({'error': 'Wrong password'})
+        }
+        return res.status(200).json(user);
     });
 });
 
