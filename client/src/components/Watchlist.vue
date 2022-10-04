@@ -1,11 +1,9 @@
 <template>
-<div>
+<div class="container">
 <div v-for="list in watch_lists" v-bind:key="list.id" class="watch_lists">
   <router-link :to=" { name: 'list', params: { id: list._id } }"> </router-link>
-      <b-button class="btn" v-on:click="getUserWatchlists()"> get watchlists </b-button>
-      <div>
-      <b-button class="btn" v-on:click="deleteList(list._id)"> Delete list</b-button>
-
+  <div  v-for="movie in watch_lists.movies" :key="movie._id">
+        <router-link :to="{ name: 'movie', params: { id: movie._id } }"></router-link>
       </div>
       </div>
       </div>
@@ -22,7 +20,7 @@ export default {
   data() {
     return {
       watch_lists: {},
-      value: null
+      userid: localStorage.userid
     }
   },
   mounted() {
@@ -30,19 +28,7 @@ export default {
   },
   methods: {
 
-    getUserWatchlists(id) {
-      Api.get('/users/' + this.$route.params.id + '/watch_lists')
-        .then((response) => {
-          console.log(response)
-          this.watch_lists = response.data
-        })
-        .catch((error) => {
-          this.watch_lists = []
-          console.log(error)
-        })
-    },
-
-    getUserWatchlistById(userid, listid) {
+    getWatchlistById(userid, listid) {
       Api.get('/users/' + userid + '/watch_lists' + listid)
         .then((response) => {
           this.watch_lists = response.data.watch_lists
@@ -71,6 +57,26 @@ export default {
         .catch((error) => {
           console.error(error)
         })
+    },
+    getListById() {
+      Api.get('/watch_lists/' + this.$route.params.id)
+        .then(response => {
+          this.watch_lists = response.data
+        })
+        .catch(error => {
+          this.watch_lists = {}
+          console.log(error)
+        })
+    },
+    updateList() {
+      const updatedList = {
+        title: this.title,
+        movies: this.movies
+      }
+      Api.patch('/watch_lists' + this.$route.params.id, updatedList).then(response => {
+        this.$router.push('/watch_lists')
+        console.log(response)
+      })
     }
   }
 }

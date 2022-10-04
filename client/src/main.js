@@ -15,7 +15,9 @@ Vue.use(BootstrapVue)
 Vue.config.productionTip = false
 const routes = [
   { path: '/users', component: Signin },
-  { path: '/movies', component: Home, Movie }]
+  { path: '/movies', component: Movie },
+  { path: '/home', component: Home }
+]
 const route = new VueRouter({
   routes
 })

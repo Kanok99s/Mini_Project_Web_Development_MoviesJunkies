@@ -1,34 +1,28 @@
 <template>
-<div class="main-container">
-<Lists>
-<Movies>
+<div class="container">
+    <Navbar />
+    <UserWatchlist />
 
-  <div>
-    <div
-      v-for="list in watch_lists" :key="list._id" >
-      <div
-        v-for="movie in watch_lists.movies" :key="movie._id">
-        <router-link :to="{ name: 'movie', params: { id: movie._id } }"
-            >{{ movie.name }}
+      <div v-for="list in watch_lists" v-bind:key="list.id" class="watch_lists">
+  <router-link :to=" { name: 'list', params: { id: list._id } }"> </router-link>
+  <img src="../assets/movie_playlist_icon_159157.png">
+<h3> {{ list.title }}</h3></div>
+
+      <div v-for="movie in watch_lists.movies" :key="movie._id">
+        <router-link :to="{ name: 'movie', params: { id: movie._id } }"> {{ movie.name }}
           </router-link>
+        </div>
       </div>
-    </div>
-  </div>
-
-</Movies>
-   </Lists>
-
-</div>
 </template>
 
 <script>
 
-import Lists from '../components/UserWatchlist.vue'
-import Movies from '../components/MovieItem.vue'
 import { Api } from '@/Api'
+import Navbar from '../components/Navbar.vue'
+import UserWatchlist from '../components/Watchlist.vue'
 
 export default {
-  components: { Lists, Movies },
+  components: { Navbar, UserWatchlist },
   name: 'Watch_lists',
   mounted() {
     console.log('Page is loaded')
@@ -45,32 +39,23 @@ export default {
         this.watch_lists.splice(index, 1)
       })
     },
+    getAllWatchlists(id) {
+      Api.get('/users/' + this.$route.params.id + '/watch_lists')
+        .then((response) => {
+          console.log(response)
+          this.watch_lists = response.data
+        })
+        .catch((error) => {
+          this.watch_lists = []
+          console.log(error)
+        })
+    },
     getWatchLists() {
       Api.get('/watch_lists').then(Response => {
         this.list = Response.data
       }).catch(error => {
         this.watch_lists = error
         console.log(error)
-      })
-    },
-    getListById() {
-      Api.get('/watch_lists/' + this.$route.params.id)
-        .then(response => {
-          this.list = response.data
-        })
-        .catch(error => {
-          this.list = {}
-          console.log(error)
-        })
-    },
-    updateList() {
-      const updatedList = {
-        title: this.title,
-        movies: this.movies
-      }
-      Api.patch('/watch_lists' + this.$route.params.id, updatedList).then(response => {
-        this.$router.push('/watch_lists')
-        console.log(response)
       })
     }
   }

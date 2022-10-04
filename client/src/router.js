@@ -25,7 +25,7 @@ export default new Router({
 
     },
     {
-      path: '/watch_lists/:id',
+      path: '/watch_lists',
       name: 'Watch_lists',
       component: Watchlists
     },
