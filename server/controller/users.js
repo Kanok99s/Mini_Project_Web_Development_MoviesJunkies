@@ -40,20 +40,40 @@ router.get('/api/users/:_id', function (req, res, next) {
         res.json(user);
     });
 });
-router.get('/api/auth/', function(req, res, next) {
-    var password = req.query.password;    
-    var emailAddress = req.query.email;
-    Users.findOne({ email: emailAddress }).exec(function(err, user){
-        if (err) { return next(err); }
-        if (user === null) {
-            return res.status(200).json({'error': 'User not found'});
-        }
-        if(user.password !== password) {
-            return res.status(200).json({'error': 'Wrong password'})
-        }
-        return res.status(200).json(user);
-    });
-});
+// Login
+router.post('/api/users/login', (req, res, next) => {
+    Users.findOne({ email: req.body.email }, (err, user) => {
+      if (err) return res.status(500).json({
+        title: 'server error',
+        error: err
+      })
+      if (!user) {
+        return res.status(401).json({
+          title: 'user not found',
+          error: 'invalid credentials'
+        })
+      }
+      //incorrect password
+      if (req.body.password != user.password) {
+        return res.status(401).json({
+          tite: 'login failed',
+          error: 'invalid credentials'
+        })
+      }
+      //IF ALL IS GOOD send to frontend
+      try {
+      return res.status(200).json({
+        title: 'login sucess',
+      })
+    } 
+    catch (err) {
+      return res.status(400).json({
+        title: 'error',
+        error: 'Unable To Login'
+      })
+    }
+    })
+  })
 
 //Delete by ID
 router.delete('/api/users/:_id', function (req, res, next) {

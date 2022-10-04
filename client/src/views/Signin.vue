@@ -1,49 +1,49 @@
 <template>
     <article>
-        <div class="container" :class="{'sign-up-active' : signUp}">
-            <div class="overlay-container">
-                <div class="overlay">
-                    <div class="overlay-left">
-                        <h2>Welcome to MoviesJunkies!</h2>
-                        <p>Please login with your personal info!</p>
-                        <button class="invert" id="signIn" @click="signUp = !signUp">Sign in</button>
-
-                    </div>
-                    <div class="overlay-right">
-                        <h2>Hello Friend</h2>
-                        <p>Please enter your personal details</p>
-                        <button class="invert" id="signUp" @click="signUp = !signUp">Sign up</button>
-
-                    </div>
-                    <!-- <div class="sign-up">
-                        <button v-on:id="sign_Up" @click="submit()">sign up</button>
-                    </div> -->
-                </div>
-
+      <div class="container" :class="{ 'sign-up-active': signUp }">
+        <div class="overlay-container">
+          <div class="overlay">
+            <div class="overlay-left">
+              <h2>Welcome to MoviesJunkies!</h2>
+              <p>Please login with your personal info!</p>
+              <button class="invert" @click="signUp = !signUp">
+                Sign in
+              </button>
             </div>
-            <form class="sign-up" action="#">
-                <h2>Create login</h2>
-                <div>Use your email for registration</div>
-                <input type="text" v-model="userName" placeholder="Name"/>
-                <input type="email" v-model="email" placeholder="Email"/>
-                <input type="password" v-model="password" placeholder="Password"/>
-                <button v-on:id="sign_Up" @click="submit()">Sign Up</button>
-            </form>
-            <form class="sign-in" action="#">
-                <h2>Sign In</h2>
-                <div>Use your account</div>
-                <input type="email" v-model="email" placeholder="Email" />
-                <input type="password" v-model="password" placeholder="Password" />
-                <a href="#">Forgot your password?</a>
-                <button v-on:id="Sign_In" @click="doLogin()"> Sign In</button>
-            </form>
+            <div class="overlay-right">
+              <h2>Hello Friend</h2>
+              <p>Please enter your personal details</p>
+              <button class="invert" @click="signUp = !signUp">
+                Sign up
+              </button>
+            </div>
+            <!-- <div class="sign-up">
+                          <button v-on:id="sign_Up" @click="submit()">sign up</button>
+                      </div> -->
+          </div>
         </div>
+        <form class="sign-up" action="#">
+          <h2>Create login</h2>
+          <div>Use your email for registration</div>
+          <input type="text" v-model="userName" placeholder="Name" />
+          <input type="email" v-model="email" placeholder="Email" />
+          <input type="password" v-model="password" placeholder="Password" />
+          <button @click="submit()">Sign Up</button>
+        </form>
+        <form class="sign-in" action="#">
+          <h2>Sign In</h2>
+          <div>Use your account</div>
+          <input type="email" v-model="email" placeholder="Email" />
+          <input type="password" v-model="password" placeholder="Password" />
+          <a href="#">Forgot your password?</a>
+          <button @click="signIn()">Sign In</button>
+        </form>
+      </div>
     </article>
-</template>
+  </template>
 <script>
 // @ is an alias to /src
 import { Api } from '@/Api'
-// import axios from 'axios'
 export default {
   data() {
     return {
@@ -53,12 +53,6 @@ export default {
       signUp: false
     }
   },
-  mounted() {
-    if (!localStorage.userID) {
-      localStorage.userID = ''
-    }
-  },
-
   methods: {
     submit() {
       Api.post('/users', {
@@ -66,118 +60,114 @@ export default {
         email: this.email,
         password: this.password
       })
-        .then((response) => {
+        .then(response => {
           this.users = response.data
           console.log(response.data)
         })
-        .catch((error) => {
+        .catch(error => {
           this.message = error.message
           console.log(error)
         })
     },
-    doLogin() {
-      if (this.email === '' || this.password === '') {
-        this.emptyFields = true
-        console.log('nazli')
-      } else {
-        Api.get('/auth/?email=' + this.email + '&password=' + this.password)
-        console.log('nazli2')
-          .then(response => {
-            if (typeof response.data.error !== 'undefined') {
-              alert(response.data.error)
-              this.user = null
-              console.log('nazli3')
-            } else {
-              this.user = response.data
-              console.log('AND THEN')
-              localStorage.userName = this.user.name
-              localStorage.userID = this.user._id
-              document.location.href = '/home'
-              console.log('nazli4')
-            }
-          })
+    signIn() {
+      const user = {
+        email: this.email,
+        password: this.password
       }
+      Api.post('/users/login', user).then(
+        res => {
+          // if successfull
+          if (res.status === 200) {
+            localStorage.setItem('email', res.data.email)
+            this.$emit('handleLogin', true)
+            this.$router.push('/')
+          }
+          localStorage.clear()
+        },
+        err => {
+          console.log(err.response)
+          this.error = err.response.data.error
+          this.boxOne = ''
+          this.$bvModal.msgBoxOk('Invalid Credentials')
+        }
+      )
     }
   }
 }
 </script>
-<style lang="scss" scoped>
-.container {
+  <style lang="scss" scoped>
+  .container {
     position: relative;
     width: 768px;
     height: 480px;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, .2),
-        0 10px 10px rgba(0, 0, 0, .2);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.2);
     background: linear-gradient(to bottom, #c45c4c, #eec3c0);
 
     .overlay-container {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        width: 50%;
-        height: 100%;
-        overflow: hidden;
-        transition: transform .5s ease-in-out;
-        z-index: 100;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 50%;
+      height: 100%;
+      overflow: hidden;
+      transition: transform 0.5s ease-in-out;
+      z-index: 100;
     }
 
     .overlay {
-        position: relative;
-        left: -100%;
-        height: 100%;
-        width: 200%;
-        background: linear-gradient(to bottom right, #c45c4c, #eec3c0);
-        color: #fff;
-        transform: translateX(0);
-        transition: transfrom .5s ease-in-out;
+      position: relative;
+      left: -100%;
+      height: 100%;
+      width: 200%;
+      background: linear-gradient(to bottom right, #c45c4c, #eec3c0);
+      color: #fff;
+      transform: translateX(0);
+      transition: transfrom 0.5s ease-in-out;
     }
 
     @mixin overlays($property) {
-        position: absolute;
-        top: 0;
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        flex-direction: column;
-        padding: 80px 40px;
-        width: calc(50% - 80px);
-        height: calc(100% - 140px);
-        text-align: center;
-        transform: translateX($property);
-        transition: transform .5s ease-in-out;
+      position: absolute;
+      top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-direction: column;
+      padding: 80px 40px;
+      width: calc(50% - 80px);
+      height: calc(100% - 140px);
+      text-align: center;
+      transform: translateX($property);
+      transition: transform 0.5s ease-in-out;
     }
 
     .overlay-left {
-        @include overlays(-20%);
-
+      @include overlays(-20%);
     }
 
     .overlay-right {
-        @include overlays(0);
-        right: 0;
-
+      @include overlays(0);
+      right: 0;
     }
-}
+  }
 
-h2 {
+  h2 {
     margin: 0;
+  }
 
-}
-
-p {
+  p {
     margin: 20px 0 30px;
-}
+  }
 
-a {
+  a {
     color: #c45c4c;
     text-decoration: none;
     margin: 15px 0;
     font-size: 1rem;
-}
+  }
 
-button {
+  button {
     border-radius: 20px;
     border: 1px solid #eec3c0;
     background-color: #eec3c0;
@@ -187,24 +177,23 @@ button {
     padding: 10px 40px;
     letter-spacing: 1px;
     text-transform: uppercase;
-    transition: transform .1s ease-in;
+    transition: transform 0.1s ease-in;
 
     &:active {
-        transform: scale(.9);
+      transform: scale(0.9);
     }
 
     &:focus {
-        outline: none;
+      outline: none;
     }
-}
+  }
 
-button.invert {
+  button.invert {
     background-color: transparent;
     border-color: #fff;
+  }
 
-}
-
-form {
+  form {
     position: absolute;
     top: 0;
     display: flex;
@@ -216,90 +205,85 @@ form {
     height: clac(200px - 180px);
     text-align: center;
     background: linear-gradient(to bottom, #efefef, #ccc);
-    transition: all .5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 
     div {
-        font-size: 1rem;
+      font-size: 1rem;
     }
 
     input {
-        background-color: #eec3c0;
-        border: none;
-        padding: 8px 15px;
-        margin: 6px 0;
-        width: calc(100% - 30px);
-        border-radius: 15px;
-        border-bottom: 1px solid #ddd;
-        box-shadow: insert 0 1px 2px rgba(0, 0, 0, .4),
-            0 -1px 1px #fff,
-            0 1px 0 #fff;
-        overflow: hidden;
+      background-color: #eec3c0;
+      border: none;
+      padding: 8px 15px;
+      margin: 6px 0;
+      width: calc(100% - 30px);
+      border-radius: 15px;
+      border-bottom: 1px solid #ddd;
+      box-shadow: insert 0 1px 2px rgba(0, 0, 0, 0.4), 0 -1px 1px #fff,
+        0 1px 0 #fff;
+      overflow: hidden;
 
-        &:focus {
-            outline: none;
-            background-color: #fff;
-
-        }
-
+      &:focus {
+        outline: none;
+        background-color: #fff;
+      }
     }
+  }
 
-}
-
-.sign-in {
+  .sign-in {
     left: 0;
     z-index: 2;
-}
+  }
 
-.sign-up {
+  .sign-up {
     left: 0;
     z-index: 1;
     opacity: 0;
+  }
 
-}
-
-.sign-up-active {
+  .sign-up-active {
     .sign-in {
-        transform: translateX(120%);
+      transform: translateX(120%);
     }
 
     .sign-up {
-        transform: translateX(130%);
-        opacity: 1;
-        z-index: 5;
-        animation: show .5s;
+      transform: translateX(130%);
+      opacity: 1;
+      z-index: 5;
+      animation: show 0.5s;
     }
 
     .overlay-container {
-        transform: translate(-100%);
+      transform: translate(-100%);
     }
 
     .overlay {
-        transform: translateX(50%);
+      transform: translateX(50%);
     }
 
     .overlay-left {
-        transform: translate(0);
+      transform: translate(0);
     }
 
     .overlay-right {
-        transform: translate(20%);
+      transform: translate(20%);
     }
-}
+  }
 
-@keyframes show {
+  @keyframes show {
     0% {
-        opacity: 0;
-        z-index: 1;
+      opacity: 0;
+      z-index: 1;
     }
 
     49% {
-        opacity: 0;
-        z-index: 1;
+      opacity: 0;
+      z-index: 1;
     }
 
     50% {
-        opacity: 1;
-        z-index: 10;
+      opacity: 1;
+      z-index: 10;
     }
-}
-</style>
+  }
+  </style>
