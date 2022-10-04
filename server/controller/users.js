@@ -20,6 +20,7 @@ router.get('/api/users', function (req, res, next) {
         res.json({ "users": user });
     });
 });
+
 //Get all comments of the specific user 
 // router.get('/api/users/:_id/comments', function (req, res, next) {
 //     Comments.find(function (err, comments) {
@@ -39,6 +40,40 @@ router.get('/api/users/:_id', function (req, res, next) {
         res.json(user);
     });
 });
+// Login
+router.post('/api/users/login', (req, res, next) => {
+    Users.findOne({ email: req.body.email }, (err, user) => {
+      if (err) return res.status(500).json({
+        title: 'server error',
+        error: err
+      })
+      if (!user) {
+        return res.status(401).json({
+          title: 'user not found',
+          error: 'invalid credentials'
+        })
+      }
+      //incorrect password
+      if (req.body.password != user.password) {
+        return res.status(401).json({
+          tite: 'login failed',
+          error: 'invalid credentials'
+        })
+      }
+      //IF ALL IS GOOD send to frontend
+      try {
+      return res.status(200).json({
+        title: 'login sucess',
+      })
+    } 
+    catch (err) {
+      return res.status(400).json({
+        title: 'error',
+        error: 'Unable To Login'
+      })
+    }
+    })
+  })
 
 //Delete by ID
 router.delete('/api/users/:_id', function (req, res, next) {
