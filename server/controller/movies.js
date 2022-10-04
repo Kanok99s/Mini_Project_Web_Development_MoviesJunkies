@@ -3,6 +3,7 @@ var router = express.Router();
 var Movies = require('../model/movies');
 const { route } = require('./users');
 const multer = require('multer');
+const movies = require('../model/movies');
 
 
 const storage = multer.diskStorage({
@@ -10,7 +11,7 @@ const storage = multer.diskStorage({
         cb(null, './uploads/');
       },
       filename: function(req, file, cb) {
-        cb(null, new Date().toISOString() + file.originalname);
+        cb(null, new Date().toISOString().slice(0, -1) + file.originalname);
       }
     });
     const upload = multer({
@@ -43,8 +44,36 @@ router.post("/api/movies", upload.single('img'), (req, res, next) => {
           });
         })
 
+router.get("/api/movies", (req, res, next) => {
+      Movies.find().select("name, img, genre").exec()
+      .then(docs => {
+            const response = {
+                  count: docs.length,
+                  movies: docs.map(doc => {
+                        return {
+                              name:doc.name,
+                              img:doc.img,
+                              genre:doc.genre,
+                              id : doc.id,
+                              request: {
+                                    type: "GET",
+                                    url: "http://localhost:3000/api/movies" + doc.id
+                              }
+                        };
+                  })
+            };
+            res.status(200).json(response);
+      })
+      .catch(err => {
+            console.log(err);
+            res.status(500).json ({
+             error:err
+});
+      });
+});
 
-//Get all movies
+
+/* //Get all movies
 router.get('/api/movies', function (req, res, next) {
       Movies.find(function (err, movie) {
             if (err) { return next(err); }
@@ -52,7 +81,7 @@ router.get('/api/movies', function (req, res, next) {
             
             res.json({ "movies": movie });
       });
-});
+}); */
 
 
 

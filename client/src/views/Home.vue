@@ -1,46 +1,54 @@
 <template>
 
-    <div class="input-group-append">
-
-    <input type="text" ref="get_id" class="form-control ml-2"  v-model="_id" placeholder="enter movieId" />
-            <b-button class="bttn" v-on:click="getMovie()">Get movie</b-button>
-            <tr v-for="movie in movies" :key="movie._id">
-              <td> {{ movie.name }}</td>
-              <td> {{ movie.genre }}</td>
-              </tr>
-        </div>
-
+<div class="container mx-auto ">
+  <div class="flex justify-between border-b border-gray-500"> <Navbar />
+   </div>
+<Movie>
+</Movie>
+ </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import { Api } from '@/Api'
+import Navbar from '../components/Navbar.vue'
+import Movie from '../components/Movie.vue'
 
 export default {
   name: 'home',
-  components: { },
+  components: { Navbar, Movie },
 
-  data() {
-    return {
-      movies: [],
-      movie: { name: '', img: '', genre: '', age_rating: '', review_rating: '', language: '', description: '' }
-    }
-  },
   methods: {
-    getMovie() {
-      Api.get('/movies/' + this.$route.params.id)
-        .then(response => {
-          this.movie = response.data
+
+    getMessage() {
+      Api.get('/')
+        .then((response) => {
+          this.message = response.data.message
         })
-        .catch(error => {
-          console.log(error)
+        .catch((error) => {
+          this.message = error
         })
+    },
+    getMovies() {
+      Api.get('/movies').then(response => {
+        this.movies = response.data.movies
+        console.log(response.date)
+      })
     }
   }
 }
-
 </script>
 
 <style>
-
+* {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+box-sizing: border-box
+}
+body {
+  background: src()
+}
 </style>

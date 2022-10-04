@@ -4,7 +4,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href=""> <a href="#" class="navbar-left"><img style="max-width:160px; margin-top: -20px; max-height: 150px;" src="../assets/cover.png"></a> </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon" @click="toggleResponsive()"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarToggleDemo02">
@@ -46,6 +46,30 @@
     </body>
   </template>
 
-<style scoped>
+<script>
+export default {
+  data() {
+    return {
+      sticky: false,
+      enableStickyOn: 100,
+      latestRoute: '',
+      mobileNavigation: false
+    }
+  },
+  mounted() {
+    this.latestRoute = this.$route.name
+  },
+  methods: {
+    toggleMobileNavigation() {
+      this.mobileNavigation = !this.mobileNavigation
+    }
+  }
+}
+</script>
 
+<style scoped>
+.nav {
+font-size: 1rem !important;
+
+}
 </style>
