@@ -1,38 +1,19 @@
 <template>
-    <div class="switchableGrid">
+    <div class=" grid">
       <div class="container">
 
-        <div class="bar">
-          <div class="btnHolder">
-            <button @click="getMovies()" class="btn-black"> Display Movies </button>
-
-            <button :class="{ barActive: layout === 'grid' }" @click="layout= 'grid'"> <i class="fas fa-th"></i> Grid </button>
-            <button :class="{ barActive: layout === 'list' }"  @click="layout = 'list'"> <i class="fas fa-list"></i> List </button>
-          </div>
-        </div>
-
-        <div class="movie">
-          <ul v-if="layout === 'grid'" class="grid">
+          <ul v-if="layout === 'grid'" class="card-list" :style="gridStyle">
             <li v-for="movie in movies" :key="movie.id">
-              <div class="img">
-                <img :src="movie.img"/>
-              </div>
-            </li>
-          </ul>
-
-          <ul v-if="layout === 'list'" class="list">
-            <li v-for="movie in movies" :key="movie.id">
-              <img :src="movie.img" />
+              <img :src="'http://localhost:8080/'+movie.img" alt="test"/>
               <div class="listMovies">
-                <h2>{{ movie.name }}</h2>
-                <p>{{ movie.description }}</p>
+                <h3>{{ movie.name }}</h3>
+                <p> Movie rating:  {{ movie.review_rating }}</p>
                 <a class="btn" href="#">Read more</a>
               </div>
             </li>
           </ul>
         </div>
       </div>
-    </div>
   </template>
 
 <script>
@@ -41,11 +22,21 @@ import { Api } from '@/Api'
 
 export default {
   name: 'Movie',
+  created() {
+    this.getMovies()
+  },
   data() {
     return {
-      layout: 'list',
-      movies: []
-
+      layout: 'grid',
+      movies: [],
+      numberOfColumns: 4
+    }
+  },
+  computed: {
+    gridStyle() {
+      return {
+        gridTemplateColumns: `repeat(${this.numberOfColumns}, minmax(100px, 1fr))`
+      }
     }
   },
   mounted() {
@@ -56,6 +47,7 @@ export default {
       Api.get('/movies').then(response => {
         this.movies = response.data.movies
         console.log(response.date)
+        console.log(this.movies)
       })
     },
     getMovieById() {
@@ -71,3 +63,23 @@ export default {
 }
 
 </script>
+
+<style scoped>
+body {
+font-family: monospace;
+padding: 30px;
+}
+img {
+
+    width:  300px;
+    height: 400px;
+    object-fit: cover;
+}
+.btn {
+font-weight: bolder;
+}
+.card-list{
+display: grid;
+grid-gap: 2em;
+}
+</style>

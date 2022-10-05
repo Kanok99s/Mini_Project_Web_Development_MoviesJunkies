@@ -60,8 +60,8 @@ export default {
     this.latestRoute = this.$route.name
   },
   methods: {
-    toggleMobileNavigation() {
-      this.mobileNavigation = !this.mobileNavigation
+    toggleResponsive() {
+      this.show = !this.show
     }
   }
 }
@@ -70,6 +70,6 @@ export default {
 <style scoped>
 .nav {
 font-size: 1rem !important;
-
+font-weight: bold;
 }
 </style>

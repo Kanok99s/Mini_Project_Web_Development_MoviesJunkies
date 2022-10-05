@@ -44,6 +44,7 @@ router.post("/api/movies", upload.single('img'), (req, res, next) => {
           });
         })
 
+/*
 router.get("/api/movies", (req, res, next) => {
       Movies.find().select("name, img, genre").exec()
       .then(docs => {
@@ -70,10 +71,10 @@ router.get("/api/movies", (req, res, next) => {
              error:err
 });
       });
-});
+});*/
 
 
-/* //Get all movies
+//Get all movies
 router.get('/api/movies', function (req, res, next) {
       Movies.find(function (err, movie) {
             if (err) { return next(err); }
@@ -81,7 +82,7 @@ router.get('/api/movies', function (req, res, next) {
             
             res.json({ "movies": movie });
       });
-}); */
+});
 
 
 
