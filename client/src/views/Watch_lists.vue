@@ -1,11 +1,15 @@
 <template>
-<div class="container">
+    <div>
+
     <Navbar />
     <UserWatchlist />
 
+    <div class="container">
       <div v-for="list in watch_lists" v-bind:key="list.id" class="watch_lists">
   <router-link :to=" { name: 'list', params: { id: list._id } }"> </router-link>
   <img src="../assets/movie_playlist_icon_159157.png">
+
+  <button @click="getAllWatchlists(id)" class="btn-gray"> Display</button>
 <h3> {{ list.title }}</h3></div>
 
       <div v-for="movie in watch_lists.movies" :key="movie._id">
@@ -13,6 +17,7 @@
           </router-link>
         </div>
       </div>
+    </div>
 </template>
 
 <script>

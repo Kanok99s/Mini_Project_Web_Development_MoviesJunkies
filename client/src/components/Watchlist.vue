@@ -1,13 +1,13 @@
 <template>
-<div class="container">
-<div v-for="list in watch_lists" v-bind:key="list.id" class="watch_lists">
-  <router-link :to=" { name: 'list', params: { id: list._id } }"> </router-link>
-  <div  v-for="movie in watch_lists.movies" :key="movie._id">
+  <div class="container">
+    <div v-for="list in watch_lists" v-bind:key="list.id" class="watch_lists">
+      <router-link :to=" { name: 'list', params: { id: list._id } }"> </router-link>
+      <div  v-for="movie in watch_lists.movies" :key="movie._id">
         <router-link :to="{ name: 'movie', params: { id: movie._id } }"></router-link>
       </div>
-      </div>
-      </div>
-    </template>
+    </div>
+  </div>
+</template>
 
 <script>
 
@@ -15,7 +15,7 @@ import { Api } from '@/Api'
 
 export default {
 
-  name: 'Watch_lists',
+  name: 'Watchlists',
   props: ['list'],
   data() {
     return {
