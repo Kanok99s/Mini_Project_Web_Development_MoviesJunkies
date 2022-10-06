@@ -1,10 +1,11 @@
 <template>
 
 <div class="container mx-auto ">
-  <div class="flex justify-between border-b border-gray-500"> <Navbar />
+  <Navbar />
+  <div class="flex justify-between border-b border-gray-500">
    </div>
-<Movie>
-</Movie>
+   <MovieList>
+</MovieList>
  </div>
 </template>
 
@@ -12,11 +13,11 @@
 // @ is an alias to /src
 import { Api } from '@/Api'
 import Navbar from '../components/Navbar.vue'
-import Movie from '../components/Movie.vue'
+import MovieList from '../components/MovieList.vue'
 
 export default {
   name: 'home',
-  components: { Navbar, Movie },
+  components: { Navbar, MovieList },
 
   methods: {
 
@@ -48,7 +49,15 @@ export default {
   color: #2c3e50;
 box-sizing: border-box
 }
-body {
-  background: src()
+/* body {
+ background-image: url("../assets/solid-color-image.png");
+ background-color: #cccccc;
+} */
+
+.container {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  object-fit: cover;
 }
 </style>

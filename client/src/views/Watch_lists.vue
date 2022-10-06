@@ -1,21 +1,17 @@
 <template>
-    <div>
-
-    <Navbar />
-    <UserWatchlist />
-
+    <div class=" grid">
     <div class="container">
-      <div v-for="list in watch_lists" v-bind:key="list.id" class="watch_lists">
-  <router-link :to=" { name: 'list', params: { id: list._id } }"> </router-link>
-  <img src="../assets/movie_playlist_icon_159157.png">
 
-  <button @click="getAllWatchlists(id)" class="btn-gray"> Display</button>
-<h3> {{ list.title }}</h3></div>
-
-      <div v-for="movie in watch_lists.movies" :key="movie._id">
-        <router-link :to="{ name: 'movie', params: { id: movie._id } }"> {{ movie.name }}
-          </router-link>
-        </div>
+      <Navbar />
+        <ul class="card-list">
+          <li v-for="list in watch_lists" :key="list._id">
+            <img src="../assets/movie_playlist_icon_159157.png" alt="test"/>
+            <div class="lists_info">
+              <h3>{{ list.title }}</h3>
+          <!-- <a class="btn" @click=" getXlist(id)"> Display</a> -->
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
 </template>
@@ -24,21 +20,25 @@
 
 import { Api } from '@/Api'
 import Navbar from '../components/Navbar.vue'
-import UserWatchlist from '../components/Watchlist.vue'
 
 export default {
-  components: { Navbar, UserWatchlist },
+  components: { Navbar },
   name: 'Watch_lists',
+
+  created() {
+    this.getWatchLists()
+  },
+
   mounted() {
     console.log('Page is loaded')
   },
   data() {
     return {
-      selectedIds: []
+      watch_lists: []
     }
   },
   methods: {
-    deleteList(id) {
+  /*  deleteList(id) {
       Api.delete('/watch_lists' + this.$route.params.id).then(response => {
         const index = this.watch_lists.findIndex(list => list._id === id)
         this.watch_lists.splice(index, 1)
@@ -54,10 +54,10 @@ export default {
           this.watch_lists = []
           console.log(error)
         })
-    },
+    }, */
     getWatchLists() {
-      Api.get('/watch_lists').then(Response => {
-        this.list = Response.data
+      Api.get('/watch_lists').then(response => {
+        this.watch_lists = response.data.watch_lists
       }).catch(error => {
         this.watch_lists = error
         console.log(error)
@@ -71,6 +71,11 @@ export default {
 <style scoped>
 h1{
     color: black;
+}
+.img {
+  width:  40px;
+    height: 40px;
+    object-fit: cover;
 }
 
 </style>
