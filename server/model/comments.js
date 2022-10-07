@@ -1,13 +1,12 @@
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var commentsSchema = new Schema({
-    users: { type: Schema.Types.ObjectId, ref: "users" },
-    content: { type: String },
-    dislike_number: { type: Number, default: 0},
-    like_number: { type: Number, default: 0 },
-
-
+  // movie: { type: Schema.Types.ObjectId, ref: "movies" },
+  movie_name: { type: String },
+  title: { type: String },
+  comment: { type: String },
+  rating: { type: Number }
 });
 
-module.exports = mongoose.model('comments', commentsSchema);
+module.exports = mongoose.model("comments", commentsSchema);
