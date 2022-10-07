@@ -6,6 +6,7 @@ import Watchlists from './views/Watch_lists.vue'
 import Search from './views/Search.vue'
 import Movie from './views/Movie.vue'
 import MovieDetails from './views/MovieDetails.vue'
+import ManageUsers from './views/ManageUsers.vue'
 
 Vue.use(Router)
 
@@ -19,7 +20,7 @@ export default new Router({
       component: Home
     },
     {
-      path: '/signin',
+      path: '/',
       name: 'signin',
       component: Signin
     },
@@ -42,6 +43,11 @@ export default new Router({
       path: '/movie_details/:id',
       name: 'movie_details',
       component: MovieDetails
+    },
+    {
+      path: '/manageusers',
+      name: 'manageusers',
+      component: ManageUsers
     }
   ]
 })
