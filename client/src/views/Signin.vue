@@ -80,7 +80,7 @@ export default {
           if (res.status === 200) {
             localStorage.setItem('email', res.data.email)
             this.$emit('handleLogin', true)
-            this.$router.push('/')
+            this.$router.push('/home')
           }
           localStorage.clear()
         },
