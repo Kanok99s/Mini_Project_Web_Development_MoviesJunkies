@@ -5,6 +5,7 @@ import Signin from './views/Signin.vue'
 import Watchlists from './views/Watch_lists.vue'
 import Search from './views/Search.vue'
 import Movie from './views/Movie.vue'
+import MovieDetails from './views/MovieDetails.vue'
 
 Vue.use(Router)
 
@@ -12,18 +13,15 @@ export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
-
     {
       path: '/home',
       name: 'home',
       component: Home
     },
-
     {
       path: '/signin',
       name: 'signin',
       component: Signin
-
     },
     {
       path: '/watch_lists/:id',
@@ -39,6 +37,11 @@ export default new Router({
       path: '/movie/:id',
       name: 'movie',
       component: Movie
+    },
+    {
+      path: '/movie_details/:id',
+      name: 'movie_details',
+      component: MovieDetails
     }
   ]
 })

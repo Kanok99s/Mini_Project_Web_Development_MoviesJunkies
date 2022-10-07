@@ -1,25 +1,27 @@
 <template>
   <body>
-      <div class=" grid">
-        <div class="container">
-
-            <ul v-if="layout === 'grid'" class="card-list" :style="gridStyle">
-              <li v-for="movie in movies" :key="movie.id">
-                <img :src="'http://localhost:3000/'+movie.img" alt="test"/>
-                <div class="movie-info">
-                  <h3>{{ movie.name }}</h3>
-                  <h6> Movie rating:  {{ movie.review_rating }}</h6>
-                <a class="btn" @click=" getMovieById(id)">Read more</a>      <!-- 'Read more' button/get method not working -->
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </body>
-    </template>
+    <div class=" grid">
+      <div class="container">
+        <ul v-if="layout === 'grid'" class="card-list" :style="gridStyle">
+          <li v-for="movie in movies" :key="movie.id">
+            <img :src="'http://localhost:3000/' + movie.img" alt="test" />
+            <div class="movie-info">
+              <h3>{{ movie.name }}</h3>
+              <h6>Movie rating: {{ movie.review_rating }}</h6>
+              <p>
+                <router-link :to="/movie_details/ + movie._id"
+                  >Read more</router-link
+                >
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</template>
 
 <script>
-
 import { Api } from '@/Api'
 
 export default {
@@ -63,33 +65,52 @@ export default {
     }
   }
 }
-
 </script>
 
-  <style scoped>
-    *{
-   box-sizing: border-box;
-    }
+<style scoped>
+* {
+  box-sizing: border-box;
+}
 
-  body {
+body {
   font-family: monospace;
   padding: 10px;
   display: flex;
-  }
+}
 
-  img {
-  width:  280px;
+img {
+  width: 280px;
   height: 380px;
   object-fit: cover;
-  }
+}
 
-  .btn {
+.btn {
   font-weight: bolder;
-  }
+}
 
-  .card-list{
+.card-list {
   display: grid;
   grid-gap: 2em;
-  }
+}
 
-  </style>
+a{
+  text-decoration: none;
+}
+
+a:link, a:visited {
+  background-color: white;
+  color: #321e23;
+  border: 2px solid #eec3c0;
+  border-radius: 10px;
+  padding: 2px 6px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: #eec3c0;
+  color: white;
+}
+
+</style>
