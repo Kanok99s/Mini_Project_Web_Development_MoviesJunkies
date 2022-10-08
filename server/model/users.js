@@ -6,7 +6,7 @@ var Schema = mongoose.Schema;
 var userSchema = new Schema({
     userName: { type: String },
     email: { type: String},
-    password: { type: Number },
+    password: { type: String },
     comment: [{ type: Schema.Types.ObjectId, ref: "comments" }],
     watch_lists: [{ type: Schema.Types.ObjectId, 
         ref: "watch_lists" }]

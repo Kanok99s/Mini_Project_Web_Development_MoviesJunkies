@@ -1,9 +1,12 @@
 <template>
   <div>
-      <div>
-    <b-card style="max-width: 600px">
+    <div>
+    <Navbar />
+  </div>
+      <div class="w-350 p-4 d-flex align-items-center justify-content-center">
+    <b-card style="width: 600px">
     <b-form @submit="onUpdate" v-if="show">
-
+  <h2> Update this movie details </h2>
       <b-form-group id="name" label="Movie name:" label-for="name">
         <b-form-input
           id="name"
@@ -75,7 +78,9 @@
 
 <script>
 import { Api } from '@/Api'
+import Navbar from '../components/Navbar.vue'
 export default {
+  components: { Navbar },
   data() {
     return {
       movie: {
