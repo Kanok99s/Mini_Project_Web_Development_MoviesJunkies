@@ -106,14 +106,32 @@ export default {
 <style scoped>
 * {
   box-sizing: border-box;
+  font-family: monospace, Avenir, Helvetica, Arial, sans-serif;
 }
+
+img {
+  width: 230px;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+h4{
+  color: #ffffff;
+}
+
+a > h4 {
+  color: #321e23;
+  font-size: 19px;
+}
+
   .header {
     font-weight: bold;
     text-decoration: underline;
     margin: 1em;
   }
 .list-title {
-  background: #eec3c0;
+  background: #c45c4c;
   color: #ffffff;
     font-size: 26px;
   font-weight: bold;
@@ -133,8 +151,8 @@ display:inline;
 
 }
 .delete-btn:hover {
-background-color: #998998;
-color: white;
+background-color: #e9d9e7;
+color: rgb(113, 100, 100);
 text-align: center;
 }
 
@@ -153,13 +171,17 @@ a:hover, a:active {
   background-color: #eec3c0;
   color: white;
 }
-.img {
-  width: 100px;
-  height: 200px;
-  object-fit: cover;
-}
 .card-list {
   display: list-item;
   grid-gap: 2em;
+}
+
+ul{
+ list-style: none;
+}
+
+li{
+  padding: 8px;
+  display:inline-block
 }
 </style>

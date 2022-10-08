@@ -1,8 +1,5 @@
 <template>
    <div>
-    <div>
-    <Navbar />
-  </div>
   <div class="w-350 p-4 d-flex align-items-center justify-content-center">
     <b-card style="width: 600px">
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
@@ -80,10 +77,8 @@
 </template>
 
 <script>
-import Navbar from '../components/Navbar.vue'
 import { Api } from '@/Api'
 export default {
-  components: { Navbar },
   data() {
     return {
       movie: {
@@ -102,7 +97,9 @@ export default {
         'Comedy',
         'Drama',
         'Romance',
-        'Thrillers'
+        'Thrillers',
+        'Crime',
+        'Sci-fi'
       ],
       show: true
     }

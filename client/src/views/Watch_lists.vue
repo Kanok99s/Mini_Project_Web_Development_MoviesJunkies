@@ -1,7 +1,7 @@
 <template>
   <div>
   <div class="container">
-
+    <h2>Bored?.. Check out some of our watchlists!</h2>
       <ul v-if="layout === 'grid'" class="card-list" :style="gridStyle">
         <li v-for="list in watch_lists" :key="list._id">
           <img class="image" src="../assets/playlist_movie_icon.png" alt="test"/>
@@ -88,6 +88,17 @@ export default {
 </script>
 
 <style scoped>
+* {
+  font-family: monospace, Avenir, Helvetica, Arial, sans-serif;
+}
+
+h2{
+  text-align: center;
+  font-weight: 700;
+  padding: 10px;
+  margin-top: 5px;
+  color: white;
+}
 
 .container{
 flex-direction: column;
@@ -100,6 +111,7 @@ padding-right: 50px;
 .list-title {
   border: 2px solid #eec3c0;
   display: inline-block;
+  background-color:#eec3c0;
 
 }
 .image {
@@ -130,6 +142,10 @@ display:grid;
 list-style: none;
 box-sizing: border-box;
 text-align: center;
+}
+
+ul{
+ list-style: none
 }
 
 </style>
