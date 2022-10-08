@@ -46,4 +46,8 @@ h3{
       font-weight: 700;
       color: #c45c4c;
 }
+
+li{
+  list-style: none
+}
 </style>

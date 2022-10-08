@@ -9,10 +9,15 @@
       <h1>{{ movie.name }}</h1>
       <h5>Genre: <span class="tag">{{ movie.genre }}</span></h5>
       <h5>Rating review: {{ movie.review_rating }}</h5>
+      <h5>Language: {{ movie.language }}</h5>
       <h5>Recommended audience: {{ movie.age_rating }} +</h5>
       <br><hr><br>
       <p> synopsis: </p>
       <p> {{ movie.description }}</p>
+      <div>
+      <b-button variant="outline-warning" class="edit"><router-link :to="/update/ + movie._id">Edit</router-link></b-button>
+      <b-button variant="outline-danger" @click="removePost(movie._id)">Delete</b-button>
+      </div>
       </div>
       </div>
   </div>
@@ -47,6 +52,13 @@ export default {
   methods: {
     addComment(comment) {
       this.comments.push(comment)
+    },
+    async removePost(id) {
+      const response = await Api.delete('/movies/' + this.$route.params.id)
+      this.$router.push({
+        name: 'home',
+        params: { message: response.message }
+      })
     }
   }
 }
@@ -64,4 +76,14 @@ img {
       color: #edede9;
       font-size: 20px;
 }
+
+a{
+  text-decoration: none;
+  color: #ffcc00;
+}
+
+a:hover{
+  color: white;
+}
+
 </style>
