@@ -30,7 +30,7 @@
              Account
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">View profile</a></li>
+              <li><a class="dropdown-item" href="/manageusers">Manage Users</a></li>
               <li><a class="dropdown-item" href="#">Settings</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="#">Log out</a></li>
@@ -41,8 +41,6 @@
   </nav>
 
       </div>
-      <!-- Render the content of the current page view -->
-      <router-view/>
     </body>
   </template>
 

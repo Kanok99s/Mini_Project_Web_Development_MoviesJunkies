@@ -11,8 +11,8 @@ var watchlistSchema = new Schema({
  },
 movies : [ 
     {
-        name: { type: String },
-    },
+    type: Schema.Types.ObjectId, ref: "movies"
+    }
   ],
  
     user: { 

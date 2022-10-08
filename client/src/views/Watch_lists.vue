@@ -1,28 +1,30 @@
 <template>
-    <div class=" grid">
-    <div class="container">
+  <div>
+  <div class="container">
 
-      <Navbar />
-        <ul class="card-list">
-          <li v-for="list in watch_lists" :key="list._id">
-            <img src="../assets/movie_playlist_icon_159157.png" alt="test"/>
-            <div class="lists_info">
-              <h3>{{ list.title }}</h3>
-          <!-- <a class="btn" @click=" getXlist(id)"> Display</a> -->
-            </div>
-          </li>
-        </ul>
-      </div>
+      <ul v-if="layout === 'grid'" class="card-list" :style="gridStyle">
+        <li v-for="list in watch_lists" :key="list._id">
+          <img class="image" src="../assets/playlist_movie_icon.png" alt="test"/>
+          <div class="lists_info">
+            <h3 class="list-title">{{ list.title }}</h3>
+            <router-link class=btn :to="/watch_lists/ + list._id + /details/"> View list</router-link>
+          </div>
+        </li>
+      </ul>
+      <hr>
+<AddList @list-submitted="addList"> </AddList>
+<hr>
     </div>
+  </div>
 </template>
 
 <script>
 
 import { Api } from '@/Api'
-import Navbar from '../components/Navbar.vue'
+import AddList from '../components/AddList.vue'
 
 export default {
-  components: { Navbar },
+  components: { AddList },
   name: 'Watch_lists',
 
   created() {
@@ -34,27 +36,21 @@ export default {
   },
   data() {
     return {
-      watch_lists: []
+      layout: 'grid',
+      numberOfColumns: 3,
+
+      watch_lists: {}
+    }
+  },
+  computed: {
+    gridStyle() {
+      return {
+        gridTemplateColumns: `repeat(${this.numberOfColumns}, minmax(100px, 1fr))`
+      }
     }
   },
   methods: {
-  /*  deleteList(id) {
-      Api.delete('/watch_lists' + this.$route.params.id).then(response => {
-        const index = this.watch_lists.findIndex(list => list._id === id)
-        this.watch_lists.splice(index, 1)
-      })
-    },
-    getAllWatchlists(id) {
-      Api.get('/users/' + this.$route.params.id + '/watch_lists')
-        .then((response) => {
-          console.log(response)
-          this.watch_lists = response.data
-        })
-        .catch((error) => {
-          this.watch_lists = []
-          console.log(error)
-        })
-    }, */
+
     getWatchLists() {
       Api.get('/watch_lists').then(response => {
         this.watch_lists = response.data.watch_lists
@@ -62,20 +58,78 @@ export default {
         this.watch_lists = error
         console.log(error)
       })
+    },
+    getListById() {
+      Api.get('/watch_lists/' + this.$route.params.id)
+        .then(response => {
+          this.list = response.data.list
+        })
+        .catch(error => {
+          this.list = {}
+          console.log(error)
+        })
+    },
+    addList(list) {
+      this.watch_lists.push(list)
     }
+    /*  createList() {
+      Api.post('/watch_lists').then((response) => {
+        this.watch_lists = response.data
+        console.log(response.data)
+      })
+        .catch((error) => {
+          console.error(error)
+        })
+    } */
+
   }
 }
 
 </script>
 
 <style scoped>
-h1{
-    color: black;
+
+.container{
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding-left: 50px;
+padding-right: 50px;
+
 }
-.img {
-  width:  40px;
-    height: 40px;
-    object-fit: cover;
+.list-title {
+  border: 2px solid #eec3c0;
+  display: inline-block;
+
+}
+.image {
+  width: 2000x;
+  height: 200px;
+  object-fit: cover;
+  background-color: #eec3c0;
+  padding:0.5em;
+
+}
+.btn {
+background-color: #998998;
+font-size: medium;
+color: white;
+font-size: 20px;
+margin: 1em;
+padding: 10px 20px;
+border-radius: 12px;
+transition-duration: 0.4s;
+}
+.btn:hover {
+background-color: #998998;
+color: white;
+}
+.card-list{
+margin: 2em;
+display:grid;
+list-style: none;
+box-sizing: border-box;
+text-align: center;
 }
 
 </style>

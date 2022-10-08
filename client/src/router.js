@@ -9,6 +9,7 @@ import MovieDetails from './views/MovieDetails.vue'
 import ManageUsers from './views/ManageUsers.vue'
 import UpdateMovie from './views/UpdateMovie.vue'
 import AddMovie from './views/AddMovie.vue'
+import WatchlistView from './views/WatchlistView'
 
 Vue.use(Router)
 
@@ -27,7 +28,7 @@ export default new Router({
       component: Signin
     },
     {
-      path: '/watch_lists/:id',
+      path: '/watch_lists',
       name: 'Watch_lists',
       component: Watchlists
     },
@@ -60,6 +61,13 @@ export default new Router({
       path: '/update/:id',
       name: 'update',
       component: UpdateMovie
+    },
+    {
+      path: '/watch_lists/:id/details',
+      name: 'watchlist',
+      component: WatchlistView,
+      props: true
+
     }
   ]
 })
