@@ -1,7 +1,6 @@
 <template>
 
 <div class="container mx-auto ">
-  <Navbar />
   <div class="flex justify-between border-b border-gray-500">
    </div>
    <MovieList>
@@ -12,12 +11,11 @@
 <script>
 // @ is an alias to /src
 import { Api } from '@/Api'
-import Navbar from '../components/Navbar.vue'
 import MovieList from '../components/MovieList.vue'
 
 export default {
   name: 'home',
-  components: { Navbar, MovieList },
+  components: { MovieList },
 
   methods: {
 
