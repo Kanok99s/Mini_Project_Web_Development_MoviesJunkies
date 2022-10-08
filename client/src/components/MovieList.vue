@@ -113,4 +113,7 @@ a:hover, a:active {
   color: white;
 }
 
+ul{
+ list-style: none
+}
 </style>

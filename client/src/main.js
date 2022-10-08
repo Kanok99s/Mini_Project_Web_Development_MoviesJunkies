@@ -8,7 +8,9 @@ import Movie from './views/Movie.vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueRouter from 'vue-router'
+import Vuetify from 'vuetify'
 
+Vue.use(Vuetify)
 Vue.use(VueRouter)
 Vue.use(BootstrapVue)
 
@@ -25,6 +27,7 @@ const route = new VueRouter({
 new Vue({
   router,
   route,
+  Vuetify,
   render: function (h) {
     return h(App)
   }

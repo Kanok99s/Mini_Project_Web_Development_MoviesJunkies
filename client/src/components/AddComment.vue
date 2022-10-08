@@ -6,14 +6,6 @@
 
     <label for="comment">comment :</label>
     <textarea id="comment" v-model="comment"></textarea>
-    <label for="rating">Rating :</label>
-    <select id="rating" v-model.number="rating">
-      <option>5</option>
-      <option>4</option>
-      <option>3</option>
-      <option>2</option>
-      <option>1</option>
-    </select>
     <br>
     <input class="button" type="submit" value="Submit">
 
@@ -27,26 +19,23 @@ export default {
   data() {
     return {
       title: '',
-      comment: '',
-      rating: null
+      comment: ''
     }
   },
   methods: {
     onSubmit() {
-      if (this.title === '' || this.comment === '' || this.rating === null) {
+      if (this.title === '' || this.comment === '') {
         alert('Comment is incomplete. Please fill out every field.')
         return
       }
 
       const comment = {
         title: this.title,
-        comment: this.comment,
-        rating: this.rating
+        comment: this.comment
       }
       const result = Api.post('/movies/' + this.$route.params.id + '/comments', {
         title: this.title,
-        comment: this.comment,
-        rating: this.rating
+        comment: this.comment
       })
       if (result.status === 201) {
         console.log('comment is added')
@@ -55,7 +44,6 @@ export default {
 
       this.title = ''
       this.comment = ''
-      this.rating = null
     }
   }
 }

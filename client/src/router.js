@@ -7,6 +7,8 @@ import Search from './views/Search.vue'
 import Movie from './views/Movie.vue'
 import MovieDetails from './views/MovieDetails.vue'
 import ManageUsers from './views/ManageUsers.vue'
+import UpdateMovie from './views/UpdateMovie.vue'
+import AddMovie from './views/AddMovie.vue'
 
 Vue.use(Router)
 
@@ -35,6 +37,11 @@ export default new Router({
       component: Search
     },
     {
+      path: '/add_movie',
+      name: 'add_movie',
+      component: AddMovie
+    },
+    {
       path: '/movie/:id',
       name: 'movie',
       component: Movie
@@ -48,6 +55,11 @@ export default new Router({
       path: '/manageusers',
       name: 'manageusers',
       component: ManageUsers
+    },
+    {
+      path: '/update/:id',
+      name: 'update',
+      component: UpdateMovie
     }
   ]
 })
