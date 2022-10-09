@@ -44,7 +44,10 @@
                 </div>
                 <div class="row">
       <div class="col-sm">
-        <b-button id="refreshButton" v-on:click="getUsers()">Refresh Accounts:</b-button>
+        <b-button id="refreshButton" v-on:click="getUsers()">Refresh Accounts</b-button>
+      </div>
+      <div class="col-sm">
+        <b-button id="deleteUsers" v-on:click="deleteUsers()">Delete Users</b-button>
       </div>
     </div>
       </div>
@@ -89,6 +92,16 @@ export default {
         })
         .catch(error => {
           this.users = error
+        })
+    },
+    deleteUsers() {
+      Api.delete('/users')
+        .then((response) => {
+          console.log(response.data)
+          alert('you deleted all the users!')
+        })
+        .catch((error) => {
+          console.log(error)
         })
     }
   }
@@ -138,7 +151,7 @@ export default {
   padding: 10px 40px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  transition: transform 0.1s ease-in;
+
 }
 #refreshButton {
   border-radius: 20px;
@@ -150,7 +163,12 @@ export default {
   padding: 10px 40px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  transition: transform 0.1s ease-in;
+
+}
+#deleteUsers {
+  background-color: #eec3c0;
+  padding: 10px 40px;
+  font-weight: bold;
 
 }
 
