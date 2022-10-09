@@ -1,44 +1,28 @@
 <template>
-      <body>
-      <div id="nav">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href=""> <a href="#" class="navbar-left"><img style="max-width:160px; margin-top: -20px; max-height: 150px;" src="../assets/cover.png"></a> </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon" @click="toggleResponsive()"></span>
-    </button>
+  <div>
 
-    <div class="collapse navbar-collapse" id="navbarToggleDemo02">
-  <ul class="navbar-nav ms-auto">
-    <li class="nav-item">
-      <a class="nav-link" href="/home"> Home </a>
+  <b-navbar toggleable="md" type="dark" class="navbar navbar-light" style="background-color:#7b8aaa">
+    <b-navbar-brand href="/home" class="navbar-left"><img style="max-width:160px; margin-top: -20px; max-height: 150px;" src="../assets/cover.png"></b-navbar-brand>
 
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/add_movie"> Add Movie </a>
+    <b-navbar-nav class="ms-auto" style="float: right">
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+    <b-collapse id="nav-collapse" is-nav>
+      <b-navbar-nav class="navbar-right">
+        <b-nav-item href="/home">Home</b-nav-item>
+        <b-nav-item href="/watch_lists">Watchlists</b-nav-item>
+        <b-nav-item href="/add_movie">Add movie</b-nav-item>
+      </b-navbar-nav>
 
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/watch_lists"> Watchlists </a>
+        <b-nav-item-dropdown text="User Settings" right>
+          <b-dropdown-item href="/manageusers">Manage users </b-dropdown-item>
+          <b-dropdown-item href="/">Logout </b-dropdown-item>
+        </b-nav-item-dropdown>
 
-    </li>
-    <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-             Account
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/manageusers">Manage Users</a></li>
-              <li><a class="dropdown-item" href="#">Settings</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Log out</a></li>
-            </ul>
-          </li>
-  </ul>
-  </div>
-  </nav>
-
-      </div>
-    </body>
-  </template>
+    </b-collapse>
+  </b-navbar-nav>
+  </b-navbar>
+</div>
+</template>
 
 <script>
 export default {
@@ -62,8 +46,23 @@ export default {
 </script>
 
 <style scoped>
-.nav {
-font-size: 1rem !important;
+* {
+  font-family:  monospace,'Avenir', Helvetica, Arial, sans-serif;
+}
+
+.navbar-right {
+font-size: 18px;
 font-weight: bold;
 }
+
+a:hover{
+    background-color: #eec3c0;
+    color:white;
+    border-radius: 15px;
+}
+a:active{
+    background-color: #eec3c0;
+    color:white;
+}
+
 </style>
