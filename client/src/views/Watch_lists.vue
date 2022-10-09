@@ -135,6 +135,8 @@ transition-duration: 0.4s;
 .btn:hover {
 background-color: #998998;
 color: white;
+font-size: 22px;
+
 }
 .card-list{
 margin: 2em;
