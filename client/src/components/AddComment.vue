@@ -7,7 +7,7 @@
     <label for="comment">comment :</label>
     <textarea id="comment" v-model="comment"></textarea>
     <br>
-    <input class="button" type="submit" value="Submit">
+    <button class="button" type="submit">Submit</button>
 
   </form>
 </template>
@@ -58,19 +58,30 @@ export default {
   padding: 20px;
   margin-left: auto;
   margin-right: auto;
-  border: 2px solid #d8d8d8;
-  background-color: white;
+  color: black;
+  border: 2px solid #eec3c0;
+  background-color: #eec3c0;
   -webkit-box-shadow: 0px 2px 15px -12px rgba(0, 0, 0, 0.57);
   -moz-box-shadow: 0px 2px 15px -12px rgba(0, 0, 0, 0.57);
   box-shadow: 2px 15px -12px rgba(0, 0, 0, 0.57);
-}
+  }
 
+ button{
+  border-radius: 12px;
+  background-color: #e7e7e7;
+  color: black;
+  width: fit-content;
+ }
 label{
   padding: 1%;
 }
 
+input{
+  width: 80%;
+}
+
 h3{
      font-weight: 700;
-     color: #6d7394;
+     color: black;
 }
 </style>

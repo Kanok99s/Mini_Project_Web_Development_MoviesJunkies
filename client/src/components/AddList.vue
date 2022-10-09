@@ -115,6 +115,7 @@ transition-duration: 0.4s;
 .button:hover {
 background-color: #998998;
 color: white;
+font-size: 22px;
 }
 .input-title {
     border: 1px solid #eec3c0;
