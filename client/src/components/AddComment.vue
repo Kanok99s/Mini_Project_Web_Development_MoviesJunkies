@@ -54,16 +54,13 @@ export default {
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 70%;
   padding: 20px;
   margin-left: auto;
   margin-right: auto;
   color: black;
   border: 2px solid #eec3c0;
   background-color: #eec3c0;
-  -webkit-box-shadow: 0px 2px 15px -12px rgba(0, 0, 0, 0.57);
-  -moz-box-shadow: 0px 2px 15px -12px rgba(0, 0, 0, 0.57);
-  box-shadow: 2px 15px -12px rgba(0, 0, 0, 0.57);
   }
 
  button{
@@ -83,5 +80,6 @@ input{
 h3{
      font-weight: 700;
      color: black;
+     font-size: 20px;
 }
 </style>

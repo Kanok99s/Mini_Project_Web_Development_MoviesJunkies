@@ -121,7 +121,7 @@ export default {
       Api.patch('/movies/' + this.$route.params.id, updatedMovie)
         .then(response => {
           console.log(response)
-          this.$router.push('/movie_details/' + this.$route.params.id)
+          this.$router.push({ name: 'home' })
         })
         .catch(error => {
           console.log(error)
@@ -133,6 +133,10 @@ export default {
 
 <style scoped>
 * {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: monospace, Avenir, Helvetica, Arial, sans-serif;
+}
+
+h2{
+  font-weight: 700;
 }
 </style>
