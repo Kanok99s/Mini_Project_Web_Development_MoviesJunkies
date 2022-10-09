@@ -1,8 +1,5 @@
 <template>
-  <div>
-    <div>
-    <Navbar />
-  </div>
+  <div id="all">
       <div class="w-350 p-4 d-flex align-items-center justify-content-center">
     <b-card style="width: 600px">
     <b-form @submit="onUpdate" v-if="show">
@@ -78,9 +75,7 @@
 
 <script>
 import { Api } from '@/Api'
-import Navbar from '../components/Navbar.vue'
 export default {
-  components: { Navbar },
   data() {
     return {
       movie: {
@@ -99,7 +94,9 @@ export default {
         'Comedy',
         'Drama',
         'Romance',
-        'Thrillers'
+        'Thrillers',
+        'Crime',
+        'Sci-fi'
       ],
       show: true
     }
@@ -112,21 +109,30 @@ export default {
   },
   methods: {
     // Need to rework patch
-    async onUpdate() {
-      const formData = new FormData()
-      formData.append('name', this.movie.name)
-      formData.append('language', this.movie.language)
-      formData.append('review_rating', Number(this.movie.review_rating))
-      formData.append('age_rating', this.movie.age_rating)
-      formData.append('genre', this.movie.genre)
-      formData.append('description', this.movie.description)
-      const response = await Api.patch('/movies/' + this.$route.params.id, formData)
-      this.$router.push({ name: 'home' })
-      console.log(response)
+    onUpdate() {
+      const updatedMovie = {
+        language: this.movie.language,
+        name: this.movie.name,
+        age_rating: this.movie.age_rating,
+        genre: this.movie.genre,
+        review_rating: this.movie.review_rating,
+        description: this.description
+      }
+      Api.patch('/movies/' + this.$route.params.id, updatedMovie)
+        .then(response => {
+          console.log(response)
+          this.$router.push('/movie_details/' + this.$route.params.id)
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
   }
 }
 </script>
 
 <style scoped>
+* {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+}
 </style>

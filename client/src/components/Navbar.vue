@@ -10,10 +10,6 @@
     <div class="collapse navbar-collapse" id="navbarToggleDemo02">
   <ul class="navbar-nav ms-auto">
     <li class="nav-item">
-      <a class="nav-link" href="/search"> Search </a>
-
-    </li>
-    <li class="nav-item">
       <a class="nav-link" href="/home"> Home </a>
 
     </li>

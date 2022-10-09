@@ -26,8 +26,8 @@ export default {
 
 <style scoped>
 .review-container {
-  width: 50%;
-  padding: 30px;
+  width: 80%;
+  padding: 15px;
   background-color: white;
   -webkit-box-shadow: 0px 2px 20px -12px rgba(0, 0, 0, 0.57);
   -moz-box-shadow: 0px 2px 20px -12px rgba(0, 0, 0, 0.57);

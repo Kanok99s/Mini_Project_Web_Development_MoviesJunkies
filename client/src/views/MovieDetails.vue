@@ -5,7 +5,7 @@
       <div class="col-md-7" >
        <img :src="'http://localhost:3000/' + movie.img" alt="test" />
       </div>
-      <div class="col-md-5">
+      <div class="col-md-5" id="details">
       <h1>{{ movie.name }}</h1>
       <h5>Genre: <span class="tag">{{ movie.genre }}</span></h5>
       <h5>Rating review: {{ movie.review_rating }}</h5>
@@ -65,6 +65,15 @@ export default {
 </script>
 
 <style scoped>
+
+* {
+  font-family: monospace, Avenir, Helvetica, Arial, sans-serif;
+}
+
+#details{
+  color: white;
+}
+
 img {
   width: 380px;
   height: 480px;
@@ -72,9 +81,13 @@ img {
 }
 
 .tag{
-      background-color: #444969;
-      color: #edede9;
-      font-size: 20px;
+color: white;
+font-weight: bold;
+font-size: 16px;
+font-family: Arial, Helvetica, sans-serif;
+padding: 3px 10px;
+background-color: #ff6600;
+border-radius: 5px;
 }
 
 a{

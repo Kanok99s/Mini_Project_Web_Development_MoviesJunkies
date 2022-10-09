@@ -79,9 +79,10 @@ body {
 }
 
 img {
-  width: 280px;
-  height: 380px;
+  width: 240px;
+  height: 350px;
   object-fit: cover;
+  border-radius: 8px;
 }
 
 .btn {

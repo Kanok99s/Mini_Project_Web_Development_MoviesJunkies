@@ -96,6 +96,11 @@ export default {
 </script>
 
 <style>
+
+* {
+  font-family: monospace, Avenir, Helvetica, Arial, sans-serif;
+}
+
 #title-between {
   margin-top: 10px;
 }
