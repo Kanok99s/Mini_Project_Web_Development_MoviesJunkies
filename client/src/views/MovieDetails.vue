@@ -2,10 +2,10 @@
       <div>
   <div class="container my-5">
       <div class="row">
-      <div class="col-md-7" >
+      <div class="col-md-6" >
        <img :src="'http://localhost:3000/' + movie.img" alt="test" />
       </div>
-      <div class="col-md-5" id="details">
+      <div class="col-md-6" id="details">
       <h1>{{ movie.name }}</h1>
       <h5>Genre: <span class="tag">{{ movie.genre }}</span></h5>
       <h5>Rating review: {{ movie.review_rating }}</h5>
@@ -56,15 +56,21 @@ export default {
     async removePost(id) {
       const response = await Api.delete('/movies/' + this.$route.params.id)
       this.$router.push({
-        name: 'home',
-        params: { message: response.message }
+        name: 'home'
       })
+      console.log(response)
     }
   }
 }
 </script>
 
 <style scoped>
+@media screen and (max-width: 400){
+  img {
+  width: 250px;
+  height: 350px;
+  object-fit: cover;}
+}
 
 * {
   font-family: monospace, Avenir, Helvetica, Arial, sans-serif;
@@ -78,6 +84,7 @@ img {
   width: 380px;
   height: 480px;
   object-fit: cover;
+  border-radius: 10px;
 }
 
 .tag{

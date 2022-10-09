@@ -141,4 +141,7 @@ export default {
 </script>
 
 <style scoped>
+h2{
+  font-weight: 700;
+}
 </style>

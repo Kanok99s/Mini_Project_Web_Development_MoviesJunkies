@@ -95,10 +95,11 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 * {
   font-family: monospace, Avenir, Helvetica, Arial, sans-serif;
+  color: white;
 }
 
 #title-between {

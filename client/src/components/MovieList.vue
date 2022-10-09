@@ -68,6 +68,13 @@ export default {
 </script>
 
 <style scoped>
+@media screen and (max-width: 400){
+  img {
+  width: 170px;
+  height: 190px;
+  object-fit: cover;}
+}
+
 * {
   box-sizing: border-box;
 }
@@ -117,4 +124,5 @@ a:hover, a:active {
 ul{
  list-style: none
 }
+
 </style>
