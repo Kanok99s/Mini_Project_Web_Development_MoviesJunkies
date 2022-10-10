@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import Signin from './views/Signin.vue'
+import Login from './views/Login.vue'
 import Watchlists from './views/Watch_lists.vue'
 import Movie from './views/Movie.vue'
 import MovieDetails from './views/MovieDetails.vue'
@@ -9,6 +9,7 @@ import ManageUsers from './views/ManageUsers.vue'
 import UpdateMovie from './views/UpdateMovie.vue'
 import AddMovie from './views/AddMovie.vue'
 import WatchlistView from './views/WatchlistView'
+import SignUp from './views/SignUp.vue'
 
 Vue.use(Router)
 
@@ -23,8 +24,13 @@ export default new Router({
     },
     {
       path: '/',
-      name: 'signin',
-      component: Signin
+      name: 'login',
+      component: Login
+    },
+    {
+      path: '/signup',
+      name: 'signup',
+      component: SignUp
     },
     {
       path: '/watch_lists',

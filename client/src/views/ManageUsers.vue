@@ -27,17 +27,11 @@
         </table>
         <div class="row">
                   <div class="mt-2 col-sm">
-                    <b-form-input
-                    id="usernameInput"
-                      type="text"
-                      v-model="userName"
+                    <b-form-input id="usernameInput" type="text" v-model="userName"
                       placeholder="Enter new user name"
                     />
                     <!-- <input v-model="email" placeholder="Enter new Email" /> -->
-                    <b-form-input
-                    id="passInput"
-                      type="password"
-                      v-model="password"
+                    <b-form-input id="passInput" type="password" v-model="password"
                       placeholder="Enter new Password"
                     />
                   </div>
@@ -124,22 +118,12 @@ export default {
   border: none;
   padding: 8px 15px;
   margin: 6px 0;
-  width: calc(100% - 30px);
-  border-radius: 15px;
-  border-bottom: 1px solid #ddd;
-  box-shadow: insert 0 1px 2px rgba(0, 0, 0, 0.4), 0 -1px 1px #fff, 0 1px 0 #fff;
-  overflow: hidden;
 }
 #usernameInput {
   background-color: #eec3c0;
   border: none;
   padding: 8px 15px;
   margin: 6px 0;
-  width: calc(100% - 30px);
-  border-radius: 15px;
-  border-bottom: 1px solid #ddd;
-  box-shadow: insert 0 1px 2px rgba(0, 0, 0, 0.4), 0 -1px 1px #fff, 0 1px 0 #fff;
-  overflow: hidden;
 }
 #updateButton {
   border-radius: 20px;
@@ -150,7 +134,6 @@ export default {
   font-weight: bold;
   padding: 10px 40px;
   letter-spacing: 1px;
-  text-transform: uppercase;
 
 }
 #refreshButton {
@@ -162,7 +145,6 @@ export default {
   font-weight: bold;
   padding: 10px 40px;
   letter-spacing: 1px;
-  text-transform: uppercase;
 
 }
 #deleteUsers {
