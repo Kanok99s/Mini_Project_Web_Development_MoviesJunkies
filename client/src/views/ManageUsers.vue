@@ -63,6 +63,12 @@ export default {
   },
   mounted: function () {
     this.getUsers()
+
+    const user = localStorage.getItem('user')
+    if (!user) {
+      this.$router.push({ name: 'login' })
+      alert('Please log in first')
+    }
   },
   methods: {
     getUsers() {
@@ -109,6 +115,10 @@ export default {
   color: white;
 }
 
+h1{
+  font-weight: 700;
+}
+
 #title-between {
   margin-top: 10px;
 }
@@ -127,12 +137,12 @@ export default {
 }
 #updateButton {
   border-radius: 20px;
-  border: 1px solid #c45c4c;
+  border: 1px solid #ffffff;
   background-color: #eec3c0;
-  color: #fff;
-  font-size: 1rem;
+  color: black;
+  font-size: 0.9rem;
   font-weight: bold;
-  padding: 10px 40px;
+  padding: 2%;
   letter-spacing: 1px;
 
 }
@@ -145,12 +155,14 @@ export default {
   font-weight: bold;
   padding: 10px 40px;
   letter-spacing: 1px;
+   color: black;
 
 }
 #deleteUsers {
   background-color: #eec3c0;
   padding: 10px 40px;
   font-weight: bold;
+ color: black;
 
 }
 

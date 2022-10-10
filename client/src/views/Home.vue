@@ -34,6 +34,13 @@ export default {
         console.log(response.date)
       })
     }
+  },
+  mounted() {
+    const user = localStorage.getItem('user')
+    if (!user) {
+      this.$router.push({ name: 'login' })
+      alert('Please log in first')
+    }
   }
 }
 </script>

@@ -52,6 +52,7 @@ export default {
         .then(response => {
           this.users = response.data
           console.log(response.data)
+          this.$router.push('/')
         })
         .catch(error => {
           this.message = error.message

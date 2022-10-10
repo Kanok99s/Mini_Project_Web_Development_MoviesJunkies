@@ -136,6 +136,13 @@ export default {
         this.show = true
       })
     }
+  },
+  mounted() {
+    const user = localStorage.getItem('user')
+    if (!user) {
+      this.$router.push({ name: 'login' })
+      alert('Please log in first')
+    }
   }
 }
 </script>

@@ -51,6 +51,12 @@ export default {
 
     const commentsResult = await Api.get('/movies/' + this.$route.params.id + '/comments')
     this.comments = commentsResult.data
+
+    const user = localStorage.getItem('user')
+    if (!user) {
+      this.$router.push({ name: 'login' })
+      alert('Please log in first')
+    }
   },
   methods: {
     addComment(comment) {
