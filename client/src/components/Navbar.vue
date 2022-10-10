@@ -56,13 +56,13 @@ font-weight: bold;
 }
 
 a:hover{
-    background-color: #eec3c0;
     color:white;
+    text-decoration: underline;
     border-radius: 15px;
 }
 a:active{
-    background-color: #eec3c0;
     color:white;
+    text-decoration: underline;
 }
 
 </style>
