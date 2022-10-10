@@ -2,7 +2,8 @@
   <div>
   <div class="container">
     <h2>Bored?.. Check out some of our watchlists!</h2>
-      <ul v-if="layout === 'grid'" class="card-list" :style="gridStyle">
+
+      <ul v-if="layout === 'grid'" class="card-list">
         <li v-for="list in watch_lists" :key="list._id">
           <img class="image" src="../assets/playlist_movie_icon.png" alt="test"/>
           <div class="lists_info">
@@ -37,18 +38,11 @@ export default {
   data() {
     return {
       layout: 'grid',
-      numberOfColumns: 3,
 
       watch_lists: {}
     }
   },
-  computed: {
-    gridStyle() {
-      return {
-        gridTemplateColumns: `repeat(${this.numberOfColumns}, minmax(100px, 1fr))`
-      }
-    }
-  },
+
   methods: {
 
     getWatchLists() {
@@ -98,21 +92,20 @@ h2{
   padding: 10px;
   margin-top: 5px;
   color: white;
+  border: 2px solid;
 }
 
 .container{
 flex-direction: column;
 justify-content: center;
 align-items: center;
-padding-left: 50px;
-padding-right: 50px;
+width: 1280px
 
 }
 .list-title {
-  border: 2px solid #eec3c0;
-  display: inline-block;
-  background-color:#eec3c0;
-
+  border-radius: 10px;
+  color:white;
+  margin: 16px auto;
 }
 .image {
   width: 2000x;
@@ -127,7 +120,7 @@ background-color: #998998;
 font-size: medium;
 color: white;
 font-size: 20px;
-margin: 1em;
+margin: 1em 0;
 padding: 10px 20px;
 border-radius: 12px;
 transition-duration: 0.4s;
@@ -144,10 +137,33 @@ display:grid;
 list-style: none;
 box-sizing: border-box;
 text-align: center;
+grid-template-columns: repeat(3, minmax(100px, 1fr));
 }
-
+@media only screen and (max-width: 1025px) {
+  .container {
+      width: 100%;
+  }
+  .card-list {
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
+  }
+}
+@media only screen and (max-width: 920px) {
+  .container {
+      width: 100%;
+  }
+  .card-list {
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
+  }
+}
+@media only screen and (max-width: 620px) {
+  .card-list {
+    grid-template-columns: repeat(1, minmax(100px, 1fr));
+  }
+}
 ul{
  list-style: none
 }
-
+span {
+  border: 2px solid;
+}
 </style>

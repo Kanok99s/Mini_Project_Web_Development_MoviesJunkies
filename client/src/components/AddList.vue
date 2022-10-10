@@ -46,50 +46,9 @@ export default {
 }
 </script>
 
-<!-- <template>
-    <b-form class="list-form">
-    <h4>Add new watchlist</h4>
-    <h5 for= "title">List title: </h5>
-    <input id= "title" type="text" placeholder="Choose a title" v-model="title">
-
-    <br>
-    <button class="button" @click="createList()"> Add watchlist</button>
-  </b-form>
-
-</template>
-
-<script>
-
-import { Api } from '@/Api'
-
-export default {
-  components: { },
-  name: 'add-list',
-  data() {
-    return {
-      watch_lists: {},
-      title: ''
-    }
-  },
-  methods: {
-    createList() {
-      const newList = {
-        title: this.title
-      }
-      console.log(newList)
-      Api.post('/watch_lists').then((response) => {
-        console.log(response.data)
-      })
-        .catch((error) => {
-          console.log(error)
-        })
-    }
-
-  }
-}
-</script> -->
-
 <style scoped>
+
+@media screen and (min-width: 800px) {
 .list-form {
   border-radius: 20px;
   display: flex;
@@ -102,6 +61,18 @@ export default {
   margin: 2em;
 
 }
+}
+@media screen and (min-width: 480px) and (max-width: 800px) {
+   .list-form{
+        width: 100%;
+        border: 2px solid #eec3c0;
+        border-radius: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px;
+    }
+}
+
 .button {
 background-color: #998998;
 font-size: medium;

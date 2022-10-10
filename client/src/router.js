@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import Watchlists from './views/Watch_lists.vue'
-import Movie from './views/Movie.vue'
 import MovieDetails from './views/MovieDetails.vue'
 import ManageUsers from './views/ManageUsers.vue'
 import UpdateMovie from './views/UpdateMovie.vue'
@@ -42,11 +41,7 @@ export default new Router({
       name: 'add_movie',
       component: AddMovie
     },
-    {
-      path: '/movie/:id',
-      name: 'movie',
-      component: Movie
-    },
+
     {
       path: '/movie_details/:id',
       name: 'movie_details',

@@ -110,11 +110,32 @@ router.get('/api/watch_lists?sort=-title,createdOn', function (req, res, next) {
     });
 });
 
+ router.post("/api/watch_lists/:list_id/movies/:movie_id", function (req, res, next) {
+    WatchList.findById(req.params.id, function (err, list) {
+      if (err) {
+        return res.status(500);
+      }
+      if (list == null) {
+        return res.status(404).json({ message: "list not found" });
+      }
+      //var comment = new Comment(req.body);
+      const movie = new Movies(req.body);
+     movie.save(function (err) {
+        if (err) {
+          return res.status(500);
+        }
+        console.log(
+          "movie '" + movie.name + "' was posted in list: " + list.title
+        );
+      });
+      list.movies.push(movie);
+      list.save();
+      console.log("movie:  "+ movie.name + "' was posted in list: " + list.title);
+      return res.status(201).json(movie);
+    });
+  });
  
-/* router.patch('/api/watch_lists/:list_id/movies/:movie_id' ,
- function (req, res, next) {
 
-}); */
 
 
 // get all movies in the list
