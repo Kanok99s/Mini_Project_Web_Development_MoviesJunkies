@@ -4,7 +4,6 @@ import router from './router'
 import BootstrapVue from 'bootstrap-vue'
 import Login from './views/Login.vue'
 import Home from './views/Home.vue'
-import Movie from './views/Movie.vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueRouter from 'vue-router'
@@ -15,7 +14,6 @@ Vue.use(BootstrapVue)
 Vue.config.productionTip = false
 const routes = [
   { path: '/users', component: Login },
-  { path: '/movies', component: Movie },
   { path: '/home', component: Home }
 ]
 const route = new VueRouter({

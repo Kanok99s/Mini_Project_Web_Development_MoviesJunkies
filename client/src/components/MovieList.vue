@@ -2,7 +2,7 @@
   <body>
     <div class=" grid">
       <div class="container">
-        <ul v-if="layout === 'grid'" class="card-list" :style="gridStyle">
+        <ul v-if="layout === 'grid'" class="card-list">
           <li v-for="movie in movies" :key="movie.id">
             <img :src="'http://localhost:3000/' + movie.img" alt="test" />
             <div class="movie-info">
@@ -32,15 +32,7 @@ export default {
   data() {
     return {
       layout: 'grid',
-      movies: [],
-      numberOfColumns: 4
-    }
-  },
-  computed: {
-    gridStyle() {
-      return {
-        gridTemplateColumns: `repeat(${this.numberOfColumns}, minmax(100px, 1fr))`
-      }
+      movies: []
     }
   },
   mounted() {
@@ -99,6 +91,33 @@ img {
 .card-list {
   display: grid;
   grid-gap: 2em;
+  grid-template-columns: repeat(4, minmax(100px, 1fr));
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+      width: 100%;
+  }
+  .card-list {
+    grid-template-columns: repeat(1, minmax(100px, 1fr));
+  }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1200px) {
+  .container {
+      width: 100%;
+  }
+  .card-list {
+    grid-template-columns: repeat(3, minmax(100px, 1fr));
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .container {
+      width: 100%;
+  }
+  .card-list {
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
+  }
 }
 
 a{
