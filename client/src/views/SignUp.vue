@@ -1,6 +1,11 @@
 <template>
-    <div class="container-sm">
+    <div class=" d-flex align-items-center justify-content-center"
+  style="bottom: 0; overflow-y: auto" id="signup-page">
+  <div class="box">
     <b-form>
+        <div>
+            <img class="logo" src="../assets/movie.png" />
+          </div>
             <div class="header">
               <h1>Sign Up</h1>
             </div>
@@ -23,6 +28,7 @@
             </b-form-group>
          </b-form>
          </div>
+        </div>
       </template>
 <script>
 
@@ -74,5 +80,24 @@ export default {
   border: none;
   margin: 6px 0;
 }
+.logo {
+  width: 150px;
+  align-content: center;
+  padding: 1%;
+}
 
+.box{
+  border-radius: 15px 50px;
+  background: #7b8aaa;
+  padding: 3%;
+    border-width: 5px;
+     border-style: outset;
+     border-color: #67789e;
+}
+
+#signup-page {
+   align-items: center;
+   display: flex;
+   height: 100vh;
+}
 </style>

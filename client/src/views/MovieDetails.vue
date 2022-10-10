@@ -81,8 +81,8 @@ export default {
 }
 
 img {
-  width: 380px;
-  height: 480px;
+  width: 320px;
+  height: auto;
   object-fit: cover;
   border-radius: 10px;
 }

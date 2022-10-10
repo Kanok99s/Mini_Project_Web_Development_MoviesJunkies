@@ -1,6 +1,11 @@
 <template>
-    <div class="container-sm">
-        <b-form >
+    <div class=" d-flex align-items-center justify-content-center"
+  style="bottom: 0; overflow-y: auto" id="login-page" >
+  <div class="box">
+        <b-form>
+          <div>
+            <img class="logo" src="../assets/popcorn.png" />
+          </div>
           <div class="header">
             <h1>Login</h1>
           </div>
@@ -21,6 +26,7 @@
             </b-form-group>
         </b-form>
         </div>
+      </div>
       </template>
 <script>
 import { Api } from '@/Api'
@@ -63,6 +69,7 @@ export default {
   font-family: monospace, Avenir, Helvetica, Arial, sans-serif;
   color: white;
 }
+
 #signinButton {
   background-color: #eec3c0;
   border: none;
@@ -75,4 +82,26 @@ export default {
     background-color: #eec3c0;
     margin: 6px 0;
 }
+
+.logo {
+  width: 150px;
+  align-content: center;
+  padding: 1%;
+}
+
+.box{
+  border-radius: 15px 50px;
+  background: #7b8aaa;
+  padding: 3%;
+    border-width: 5px;
+     border-style: outset;
+     border-color: #67789e;
+}
+
+#login-page {
+   align-items: center;
+   display: flex;
+   height: 100vh;
+}
+
 </style>
