@@ -106,6 +106,12 @@ export default {
       '/movies/' + this.$route.params.id)
     this.movie = response.data
     console.log(response.data)
+
+    const user = localStorage.getItem('user')
+    if (!user) {
+      this.$router.push({ name: 'login' })
+      alert('Please log in first')
+    }
   },
   methods: {
     // Need to rework patch

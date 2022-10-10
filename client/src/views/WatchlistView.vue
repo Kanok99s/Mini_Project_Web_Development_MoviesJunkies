@@ -58,6 +58,14 @@ export default {
 
     const movieListResult = await Api.get('/watch_lists/' + this.$route.params.id + '/movies')
     this.movies = movieListResult.data
+
+    {
+      const user = localStorage.getItem('user')
+      if (!user) {
+        this.$router.push({ name: 'login' })
+        alert('Please log in first')
+      }
+    }
   },
 
   methods: {

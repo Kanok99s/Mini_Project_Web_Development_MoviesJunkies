@@ -33,7 +33,11 @@ export default {
   },
 
   mounted() {
-    console.log('Page is loaded')
+    const user = localStorage.getItem('user')
+    if (!user) {
+      this.$router.push({ name: 'login' })
+      alert('Please log in first')
+    }
   },
   data() {
     return {

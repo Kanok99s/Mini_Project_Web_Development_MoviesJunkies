@@ -20,7 +20,7 @@
           </div>
           <b-form-group>
             <b-form-text class="text"
-              >Dont have an acccount?
+              >Don't have an acccount?
               <router-link to="/signup">Sign Up</router-link>
             </b-form-text>
             </b-form-group>
@@ -47,11 +47,10 @@ export default {
         res => {
           // if successfull
           if (res.status === 200) {
-            localStorage.setItem('email', res.data.email)
+            localStorage.setItem('user', this.email)
             this.$emit('handleLogin', true)
             this.$router.push('/home')
           }
-          localStorage.clear()
         },
         err => {
           console.log(err.response)
