@@ -19,7 +19,7 @@
             <div class="enterinput">
               <b-input type="password" class="input" v-model="password" placeholder="Enter your password"/>
             </div>
-            <b-button type="button" id="signupButton" @click="submit()">Sign Up</b-button>
+            <b-button type="button" id="signupButton" @click="preventSignup()">Sign Up</b-button>
               <b-form-group>
             <b-form-text class="text"
               >Already have an account?
@@ -43,6 +43,22 @@ export default {
     }
   },
   methods: {
+    preventSignup() {
+      if (this.userName === '') {
+        alert('User name is empty')
+        this.$router.push('/signup')
+      }
+      if (this.email === '') {
+        alert('Email is empty')
+        this.$router.push('/signup')
+      }
+      if (this.password === '') {
+        alert('Password is empty')
+        this.$router.push('/signup')
+      } else {
+        this.submit()
+      }
+    },
     submit() {
       Api.post('/users', {
         userName: this.userName,
