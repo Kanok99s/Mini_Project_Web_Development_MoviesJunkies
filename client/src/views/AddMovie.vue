@@ -118,7 +118,7 @@ export default {
       formData.append('genre', this.movie.genre)
       formData.append('description', this.movie.description)
       const response = await Api.post('/movies', formData)
-      this.$router.push({ name: 'home' })
+      alert('Movie have been added')
       console.log(response)
     },
     onReset(event) {

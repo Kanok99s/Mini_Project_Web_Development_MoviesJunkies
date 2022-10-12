@@ -127,7 +127,7 @@ export default {
       Api.patch('/movies/' + this.$route.params.id, updatedMovie)
         .then(response => {
           console.log(response)
-          this.$router.push({ name: 'home' })
+          alert('Movie have been updated')
         })
         .catch(error => {
           console.log(error)
