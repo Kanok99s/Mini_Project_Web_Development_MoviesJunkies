@@ -130,7 +130,7 @@ h4{
 
 a > h4 {
   color: #321e23;
-  font-size: 19px;
+  font-size: 18px;
 }
 
   .header {

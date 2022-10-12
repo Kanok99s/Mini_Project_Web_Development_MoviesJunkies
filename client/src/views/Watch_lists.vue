@@ -13,7 +13,7 @@
         </li>
       </ul>
       <hr>
-<AddList @list-submitted="addList"> </AddList>
+
 <hr>
     </div>
   </div>
@@ -22,10 +22,9 @@
 <script>
 
 import { Api } from '@/Api'
-import AddList from '../components/AddList.vue'
 
 export default {
-  components: { AddList },
+
   name: 'Watch_lists',
 
   created() {
