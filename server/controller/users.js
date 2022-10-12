@@ -86,19 +86,6 @@ router.delete('/api/users/:_id', function (req, res, next) {
         res.json(user);
     });
 });
-//Delete sepcific comment of a specific person
-// router.delete('/api/users/:user_id/comments/:comment_id', function (req, res, next) {
-//     var id = req.params.comment_id;
-//     Comments.findOneAndDelete(id, function (err, comments) {
-//         if (err) { return next(err); }
-//         if (comments == null) {
-//             return res.status(404).json({ "message": "comment not found" });
-
-//         } res.json({ "comments": comments });
-//     });
-
-// });
-
 //Delete all
 router.delete('/api/users/', function (req, res, next) {
     Users.remove({}, function (err, user) {

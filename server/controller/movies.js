@@ -18,14 +18,6 @@ const upload = multer({
   storage: storage,
 });
 
-/* //creating new movies
-router.post('/api/movies', function (req, res, next) {
-      var movie = new Movies(req.body);
-      movie.save(function (err, movie) {
-            if (err) { return next(err); }
-            res.status(201).json(movie);
-      })
-}); */
 
 router.post("/api/movies", upload.single("img"), (req, res, next) => {
   const movie = new Movies({
@@ -43,34 +35,6 @@ router.post("/api/movies", upload.single("img"), (req, res, next) => {
   });
 });
 
-/*
-router.get("/api/movies", (req, res, next) => {
-      Movies.find().select("name, img, genre").exec()
-      .then(docs => {
-            const response = {
-                  count: docs.length,
-                  movies: docs.map(doc => {
-                        return {
-                              name:doc.name,
-                              img:doc.img,
-                              genre:doc.genre,
-                              id : doc.id,
-                              request: {
-                                    type: "GET",
-                                    url: "http://localhost:3000/api/movies" + doc.id
-                              }
-                        };
-                  })
-            };
-            res.status(200).json(response);
-      })
-      .catch(err => {
-            console.log(err);
-            res.status(500).json ({
-             error:err
-});
-      });
-});*/
 
 //post comment list that was posted for specific movie
 router.post("/api/movies/:id/comments", function (req, res, next) {
@@ -215,30 +179,6 @@ Movies.findByIdAndUpdate(req.params.id, req.body, { new: true })
     res.status(500).send(error);
   });
 });
-
-
-//patch updates
-// router.patch("/api/movies/:id", function (req, res, next) {
-//   var id = req.params.id;
-//   Movies.findByIdAndUpdate(id, function (err, movie) {
-//     if (err) {
-//       return next(err);
-//     }
-//     if (movies == null) {
-//       return res.status(404).json({ message: "movie not found" });
-//     }
-//     movie.name = req.body.name || movie.name;
-//     movie.genre = req.body.genre || movie.genre;
-//     movie.age_rating = req.body.age_rating || movie.age_rating;
-//     movie.review_rating = req.body.review_rating || movie.review_rating;
-//     movie.language = req.body.language || movie.language;
-//     movie.description = req.body.description || movie.description;
-//     movie.img = req.body.img|| movie.img;
-
-//     movie.save();
-//     res.json(movie);
-//   });
-// });
 
 
 
