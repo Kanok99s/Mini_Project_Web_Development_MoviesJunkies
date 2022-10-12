@@ -14,7 +14,6 @@
       <br><hr><br>
       <p> synopsis: </p>
       <p> {{ movie.description }}</p>
-  <div class="selector"> <add-to-list-selector> </add-to-list-selector> </div>
       <div>
       <b-button variant="outline-warning" class="edit"><router-link :to="/update/ + movie._id">Edit</router-link></b-button>
       <b-button variant="outline-danger" @click="removePost(movie._id)">Delete</b-button>
@@ -33,10 +32,9 @@
 import { Api } from '@/Api'
 import AddComment from '../components/AddComment.vue'
 import CommentList from '../components/CommentList.vue'
-import AddToListSelector from '../components/AddToListSelector.vue'
 
 export default {
-  components: { AddComment, CommentList, AddToListSelector },
+  components: { AddComment, CommentList },
   name: 'Movie',
   data() {
     return {

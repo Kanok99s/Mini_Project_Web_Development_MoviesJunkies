@@ -1,7 +1,7 @@
 <template>
   <div>
 
-  <b-navbar toggleable="md" type="dark" class="navbar navbar-light" style="background-color:#2f1b19" id="bar">
+  <b-navbar toggleable="md" type="dark" class="navbar navbar-light" style="background-color:#000220" id="bar">
     <b-navbar-brand href="/home" class="navbar-left"><img style="max-width:150px; margin-left: 20px; margin-top: auto; max-height: 150px; " src="../assets/cover.png"></b-navbar-brand>
 
     <b-navbar-nav class="ms-auto" style="float: right">
