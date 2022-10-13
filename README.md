@@ -61,16 +61,22 @@ Open the `server` and `client` in separate VSCode workspaces or open the combine
 
 ### Purpose
 
-The purpose of the project is to build a website which helps users to find the movies, rate them, create lists that they can share, and have discussions with other people.  The website would make the movie-exploring journey easier for users, and they can find relevant movies in the desired genre 33and explore more options/hidden gems.
+The purpose of moviesjunkies is to provide a platform for users to find the movies they like and share their opinions! Users can add new movies, view watchlists, edit movie details and delete specific movies.
+
 
 ### Pages
+Page 1: Login page is where you can access the home page by filling out your credentials. If you don't already have an account, you can click sign up. you will be directed to the signup page where you can enter your user name, email and password.
 
-Page 1: Home page includes website name and logo. This page will have the most popular movies and most recent movies at the moment that the user can scroll through. As well as a hidden gem section that includes recommended movies of our choices, and a genre section.
-The user can search for their desired movie by using the searching function at the top of the page.
+Page 2-3: After being successfully, you will be directed to the home page, where you can see all the movies. you can click read more to access movie details page where you can get more information about the movie, leave a comment, edit or remove the movie. you can also read other people's opinion in this page.
 
-Page 2:Second page is going to be displayed if the user clicks on one of the specified movies in the Home page. The description of the movie would be displayed including its name,genre,rating,age rating and language. The casting members would be shown below the description of the movie.Comment sections would be at the bottom of the page so the user can leave a comment about the movie. There would also be a button that the user can click in order to add the movie to their watch list.
+page 4: In the navigation you can see "add movie", where you can add the movie which can be displayed in the home page.
 
-Page 3: User profile is going to display the users profile picture and account details, recent watched or viewed movies section. As well as their movies lists like “To watch” list, “Watched” list, and enabling the user to add a list of his/her choice. As well as a logout functionality. 
+page 5-6: In the nvigation bar you can see "watchlist", which we can see existing watchlist of different categories and you can click the suggested wathclist to see the movies listed there.
+
+page 7: In the naviagtion bar you can see "user settings" where you can either log out or manage users. 
+
+page 8: In manage users you can see all users that have been registered in the website. you can edit the user name and password of the users.
+
 
 
 ### Entity-Relationship (ER) Diagram
