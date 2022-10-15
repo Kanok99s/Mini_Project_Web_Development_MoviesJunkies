@@ -4,7 +4,7 @@
       <div class="container">
         <ul v-if="layout === 'grid'" class="card-list">
           <li v-for="movie in movies" :key="movie.id">
-            <img :src="'http://localhost:3000/' + movie.img" alt="test" />
+            <img :src="movie.img" alt="test" />
             <div class="movie-info">
               <h3>{{ movie.name }}</h3>
               <h6>Movie rating: {{ movie.review_rating }}</h6>

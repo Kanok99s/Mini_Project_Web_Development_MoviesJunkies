@@ -2,16 +2,16 @@ var express = require("express");
 var router = express.Router();
 var Movies = require("../model/movies");
 const { route } = require("./users");
-const cloudinary = require('../utils/cloudinary');
-const upload = require('../utils/multer');
+const cloudinary = require("../utils/cloudinary");
+const upload = require("../utils/multer");
 
 router.post("/api/movies", upload.single("img"), async (req, res, next) => {
   try {
   const result = await cloudinary.uploader.upload(req.file.path);
 
-  const movie = new Movies({
+  let movie = new Movies({
     name: req.body.name,
-    avatar: result.secure_url,
+    img: result.secure_url,
     cloudinary_id: result.public_id,
     genre: req.body.genre,
     age_rating: req.body.age_rating,
@@ -24,6 +24,15 @@ router.post("/api/movies", upload.single("img"), async (req, res, next) => {
   } catch (err) {
     console.log(err);
   }
+});
+
+router.get("/api/movies", async(req, res) => {
+try {
+let movie = await Movies.find();
+res.json(movie);
+} catch (err) {
+  console.log(err);
+}
 });
 
 
@@ -71,7 +80,7 @@ router.get("/api/movies/:id/comments", function (req, res, next) {
     });
 });
 
-//Get all movies
+/* //Get all movies
 router.get("/api/movies", function (req, res, next) {
   Movies.find(function (err, movie) {
     if (err) {
@@ -80,7 +89,7 @@ router.get("/api/movies", function (req, res, next) {
 
     res.json({ movies: movie });
   });
-});
+}); */
 
 //Get movie by ID
 router.get("/api/movies/:id", function (req, res, next) {
