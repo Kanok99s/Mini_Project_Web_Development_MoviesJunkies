@@ -68,6 +68,7 @@ export default {
         .then(response => {
           this.users = response.data
           console.log(response.data)
+          alert('Account created successfully!')
           this.$router.push('/')
         })
         .catch(error => {

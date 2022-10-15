@@ -4,7 +4,8 @@ var morgan = require('morgan');
 var path = require('path');
 var cors = require('cors');
 var history = require('connect-history-api-fallback');
-
+const dotenv = require('dotenv');
+dotenv.config();
 
 var watchListController = require('./controller/watch_list');
 var userController = require('./controller/users');
@@ -36,6 +37,7 @@ app.use('/uploads',express.static('uploads'));
 // Enable cross-origin resource sharing for frontend must be registered before api
 app.options('*', cors());
 app.use(cors());
+
 
 // Import routes
 app.get('/api', function (req, res) {
