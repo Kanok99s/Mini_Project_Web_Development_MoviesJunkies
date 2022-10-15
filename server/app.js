@@ -4,8 +4,7 @@ var morgan = require('morgan');
 var path = require('path');
 var cors = require('cors');
 var history = require('connect-history-api-fallback');
-const dotenv = require('dotenv');
-dotenv.config();
+
 
 var watchListController = require('./controller/watch_list');
 var userController = require('./controller/users');
