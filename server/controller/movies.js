@@ -11,7 +11,7 @@ router.post("/api/movies", upload.single("img"), async (req, res, next) => {
 
   const movie = new Movies({
     name: req.body.name,
-    img: result.secure_url,
+    avatar: result.secure_url,
     cloudinary_id: result.public_id,
     genre: req.body.genre,
     age_rating: req.body.age_rating,
