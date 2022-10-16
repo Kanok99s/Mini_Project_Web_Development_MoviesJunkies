@@ -13,7 +13,7 @@
               <h4 class="movie-list-item"> {{ movie.name }}
                </h4>
 
-               <img :src="'http://localhost:3000/' + movie.img" alt="test" />
+               <img :src="movie.img" alt="test" />
             </router-link>
             </li>
            </ul>

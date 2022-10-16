@@ -67,6 +67,7 @@
       </b-form-group>
       <br><br>
       <b-button type="submit" variant="primary">Update</b-button>
+      <b-button variant="secondary"><router-link :to="/movie_details/ + movie._id">Return</router-link></b-button>
     </b-form>
    </b-card>
 </div>
@@ -145,4 +146,13 @@ export default {
 h2{
   font-weight: 700;
 }
+
+a{
+  text-decoration: none;
+  color: white;
+}
+a:hover{
+ color: rgb(203, 189, 189);
+}
+
 </style>
