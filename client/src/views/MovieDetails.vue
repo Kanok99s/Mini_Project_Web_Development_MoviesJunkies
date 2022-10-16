@@ -3,7 +3,7 @@
   <div class="container my-5">
       <div class="row">
       <div class="col-md-6" >
-       <img :src="'http://localhost:3000/' + movie.img" alt="test" />
+       <img :src=" movie.img" alt="test" />
       </div>
       <div class="col-md-6" id="details">
       <h1>{{ movie.name }}</h1>

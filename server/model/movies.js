@@ -5,6 +5,7 @@ var moviesSchema = new Schema();
 var moviesSchema = new Schema({
   name: { type: String, required: true },
   img: { type: String },
+  cloudinary_id: { type: String },
   genre: { type: String },
   age_rating: { type: Number },
   review_rating: { type: Number },

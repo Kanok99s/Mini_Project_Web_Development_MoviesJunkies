@@ -66,7 +66,7 @@
         ></b-form-textarea>
       </b-form-group>
       <!-- <b-form-file v-model="movie.img" class="mt-3" plain>Select Photo</b-form-file> -->
-      <input type="file" @change="onFileSelected">
+      <input type="file" name="img" @change="onFileSelected">
       <br><br>
       <b-button type="submit" variant="primary">Submit</b-button>
       <b-button type="reset" variant="danger">Reset</b-button>
