@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var Movies = require("../model/movies");
+var Comment = require("../model/comments");
 const { route } = require("./users");
 const cloudinary = require("../utils/cloudinary");
 const upload = require("../utils/multer");
