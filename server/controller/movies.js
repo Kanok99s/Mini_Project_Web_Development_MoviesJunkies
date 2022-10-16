@@ -26,15 +26,6 @@ router.post("/api/movies", upload.single("img"), async (req, res, next) => {
   }
 });
 
-router.get("/api/movies", async(req, res) => {
-try {
-let movie = await Movies.find();
-res.json(movie);
-} catch (err) {
-  console.log(err);
-}
-});
-
 
 
 //post comment list that was posted for specific movie
@@ -80,7 +71,7 @@ router.get("/api/movies/:id/comments", function (req, res, next) {
     });
 });
 
-/* //Get all movies
+ //Get all movies
 router.get("/api/movies", function (req, res, next) {
   Movies.find(function (err, movie) {
     if (err) {
@@ -89,7 +80,7 @@ router.get("/api/movies", function (req, res, next) {
 
     res.json({ movies: movie });
   });
-}); */
+}); 
 
 //Get movie by ID
 router.get("/api/movies/:id", function (req, res, next) {
