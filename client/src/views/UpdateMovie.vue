@@ -115,7 +115,6 @@ export default {
     }
   },
   methods: {
-    // Need to rework patch
     onUpdate() {
       const updatedMovie = {
         language: this.movie.language,
