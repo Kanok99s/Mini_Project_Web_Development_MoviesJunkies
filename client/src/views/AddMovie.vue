@@ -109,6 +109,7 @@ export default {
       this.img = event.target.files[0]
     },
     async onSubmit() {
+      alert('Movie have been added')
       const formData = new FormData()
       formData.append('img', this.img)
       formData.append('name', this.movie.name)
@@ -118,7 +119,6 @@ export default {
       formData.append('genre', this.movie.genre)
       formData.append('description', this.movie.description)
       const response = await Api.post('/movies', formData)
-      alert('Movie have been added')
       console.log(response)
     },
     onReset(event) {
